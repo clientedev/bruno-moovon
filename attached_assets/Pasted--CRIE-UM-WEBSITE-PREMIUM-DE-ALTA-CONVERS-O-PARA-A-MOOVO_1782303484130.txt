@@ -1,0 +1,547 @@
+# CRIE UM WEBSITE PREMIUM DE ALTA CONVERSÃO PARA A MOOVON CONSULTING
+
+Desenvolva um website moderno, sofisticado e altamente persuasivo para a empresa MOOVON Consulting Corretora de Seguros de Vida.
+
+O objetivo principal é gerar leads qualificados, fortalecer a autoridade da marca e transformar visitantes em potenciais clientes através de uma experiência premium que transmita credibilidade, confiança e exclusividade.
+
+O design deve parecer uma mistura entre:
+
+* Consultoria Financeira Premium
+* Planejamento Patrimonial
+* Wealth Management
+* Seguradora de Alto Padrão
+* Empresa de Proteção Familiar
+
+O resultado final deve parecer um projeto de agência digital de alto nível, com investimento superior a R$ 30.000.
+
+---
+
+# SOBRE A EMPRESA
+
+Nome da empresa:
+MOOVON Consulting Corretora de Seguros de Vida
+
+Fundador:
+Bruno Saraiva de Castro
+
+Segmento:
+Seguros de Vida e Planejamento Financeiro
+
+Tempo de mercado:
+7 anos
+
+Atendimento:
+Todo o Brasil
+
+Modalidade:
+Presencial e Online
+
+Objetivos do site:
+
+* Gerar leads
+* Captar contatos para WhatsApp
+* Captar e-mails através de e-book
+* Demonstrar autoridade
+* Construir credibilidade
+* Apresentar serviços
+* Converter visitantes em clientes
+
+---
+
+# PÚBLICO-ALVO
+
+Homens e mulheres entre 30 e 60 anos.
+
+Perfil:
+
+* Empresários
+* Profissionais liberais
+* Médicos
+* Advogados
+* Executivos
+* Autônomos
+* Pais de família
+* Pessoas casadas
+* Pessoas preocupadas com patrimônio e sucessão
+
+Principais dores:
+
+* Medo de deixar a família desamparada
+* Falta de planejamento financeiro
+* Proteção patrimonial insuficiente
+* Planejamento sucessório inadequado
+* Falta de conhecimento sobre seguros de vida modernos
+
+---
+
+# IDENTIDADE VISUAL
+
+Utilizar rigorosamente:
+
+Cor principal:
+#426595
+
+Cor secundária:
+#252731
+
+Cor de apoio:
+#FFFFFF
+
+Cor neutra:
+#F7F8FA
+
+Texto:
+#1A1A1A
+
+Detalhes:
+#D9E2EC
+
+---
+
+# ESTILO VISUAL
+
+Visual extremamente elegante.
+
+Misturar:
+
+* Moderno
+* Minimalista
+* Corporativo
+* Sofisticado
+
+Utilizar:
+
+* Glassmorphism leve
+* Micro animações
+* Scroll suave
+* Sombras sofisticadas
+* Efeitos premium
+* Muito espaço em branco
+* Layout limpo
+* Design focado em conversão
+
+Inspirado em:
+
+* Bancos Private
+* XP Private
+* BTG Pactual
+* Wealth Management
+* Consultorias internacionais
+
+---
+
+# TECNOLOGIAS
+
+Desenvolver utilizando:
+
+* Next.js 15
+* TypeScript
+* Tailwind CSS
+* Framer Motion
+* React Hook Form
+* Zod
+* Resend para envio de e-mails
+* Google Analytics
+* Meta Pixel
+
+SEO avançado.
+
+Performance Lighthouse acima de 95.
+
+Totalmente responsivo.
+
+Dark Mode elegante.
+
+---
+
+# HEADER
+
+Header fixo.
+
+Logo à esquerda.
+
+Menu:
+
+* Início
+* Sobre
+* Soluções
+* Mentoria
+* E-book
+* Depoimentos
+* Contato
+
+Botão destaque:
+
+"Solicitar Consultoria"
+
+---
+
+# HERO SECTION
+
+Criar uma hero section extremamente impactante.
+
+Imagem de fundo premium.
+
+Mostrar:
+
+Família feliz + empresário + elementos financeiros discretos.
+
+Título:
+
+"Proteja quem você ama. Planeje o futuro com segurança."
+
+Subtítulo:
+
+"Há mais de 7 anos ajudando famílias, empresários e profissionais a proteger seu patrimônio e construir um futuro financeiro seguro."
+
+Botões:
+
+[Solicitar Consultoria]
+
+[Falar no WhatsApp]
+
+Indicadores:
+
++7 anos de experiência
+
+Atendimento nacional
+
+Especialista em proteção financeira
+
+Adicionar animações premium.
+
+---
+
+# SEÇÃO DE CREDIBILIDADE
+
+Título:
+
+"Confiança construída através de resultados"
+
+Exibir:
+
+* Certificações
+* Premiações
+* Reconhecimentos
+* Participações em eventos
+* Fotos profissionais
+
+Criar cards sofisticados.
+
+---
+
+# SOBRE O FUNDADOR
+
+Título:
+
+"Conheça Bruno Saraiva"
+
+Inserir área para foto profissional.
+
+Texto apresentando:
+
+* Especialista em seguros de vida
+* Consultor financeiro
+* Mentor
+* Educador financeiro
+
+Destacar:
+
+* Experiência
+* Missão
+* Valores
+* Diferenciais
+
+Adicionar estatísticas animadas.
+
+---
+
+# SOLUÇÕES
+
+Criar cards premium para:
+
+Seguro de Vida Individual
+
+Seguro para Famílias
+
+Seguro para Empresários
+
+Planejamento Sucessório
+
+Proteção Patrimonial
+
+Blindagem Financeira
+
+Consultoria Financeira
+
+Mentoria Personalizada
+
+Cada card deve possuir:
+
+* Ícone elegante
+* Descrição
+* CTA
+
+Animações ao passar o mouse.
+
+---
+
+# DIFERENCIAIS
+
+Título:
+
+"Por que escolher a MOOVON?"
+
+Cards:
+
+✓ Atendimento consultivo
+
+✓ Soluções personalizadas
+
+✓ Atendimento em todo Brasil
+
+✓ Planejamento de longo prazo
+
+✓ Proteção patrimonial
+
+✓ Especialização em seguros de vida
+
+✓ Suporte contínuo
+
+✓ Atendimento humanizado
+
+---
+
+# PROCESSO DE ATENDIMENTO
+
+Criar timeline moderna.
+
+Passos:
+
+1. Diagnóstico
+
+2. Planejamento
+
+3. Apresentação da solução
+
+4. Contratação
+
+5. Acompanhamento
+
+Design premium.
+
+---
+
+# SEÇÃO DE DEPOIMENTOS
+
+Carrossel elegante.
+
+Cards modernos.
+
+Fotos dos clientes.
+
+Avaliações 5 estrelas.
+
+Layout semelhante a SaaS premium.
+
+---
+
+# MENTORIA
+
+Criar área exclusiva.
+
+Título:
+
+"Aprenda a tomar decisões financeiras mais inteligentes"
+
+Explicar:
+
+* Mentoria individual
+* Planejamento financeiro
+* Estratégias de proteção patrimonial
+* Acompanhamento personalizado
+
+Botão:
+
+"Quero saber mais"
+
+---
+
+# CAPTAÇÃO DE LEADS COM E-BOOK
+
+Criar uma seção de alta conversão.
+
+Título:
+
+"Baixe Gratuitamente o Guia Completo de Proteção Financeira"
+
+Subtítulo:
+
+"Descubra como proteger sua família, seu patrimônio e seu futuro."
+
+Benefícios:
+
+✓ Seguro de vida explicado de forma simples
+
+✓ Estratégias de proteção patrimonial
+
+✓ Planejamento sucessório
+
+✓ Como evitar erros financeiros
+
+✓ Dicas práticas dos especialistas
+
+Formulário:
+
+Nome Completo
+
+E-mail
+
+WhatsApp
+
+Checkbox LGPD obrigatório
+
+Botão:
+
+"Receber E-book Gratuitamente"
+
+---
+
+# AUTOMAÇÃO DO E-BOOK
+
+Ao enviar o formulário:
+
+1. Salvar lead no banco de dados.
+
+2. Disparar evento para Google Analytics.
+
+3. Disparar evento para Meta Pixel.
+
+4. Enviar automaticamente o e-book para o e-mail cadastrado.
+
+5. Exibir mensagem de sucesso.
+
+6. Redirecionar para página de agradecimento.
+
+7. Exibir botão para WhatsApp.
+
+Utilizar Resend.
+
+Modelo de e-mail:
+
+Assunto:
+
+Seu E-book já está disponível 📘
+
+Mensagem:
+
+Olá, [Nome].
+
+Obrigado pelo interesse.
+
+Seu material já está disponível para download.
+
+Caso deseje uma análise personalizada sobre proteção financeira e planejamento patrimonial, fale diretamente conosco.
+
+Botão:
+
+Baixar E-book
+
+Botão:
+
+Falar no WhatsApp
+
+---
+
+# FAQ
+
+Perguntas frequentes:
+
+Por que contratar um seguro de vida?
+
+Seguro de vida serve apenas para quem tem filhos?
+
+Como funciona o pagamento?
+
+Posso contratar online?
+
+Quais seguradoras vocês trabalham?
+
+Como funciona a consultoria?
+
+---
+
+# CONTATO
+
+Formulário:
+
+Nome
+
+Telefone
+
+E-mail
+
+Mensagem
+
+Botão:
+
+"Solicitar Consultoria"
+
+---
+
+# RODAPÉ
+
+Exibir:
+
+MOOVON Consulting
+
+WhatsApp
+
+Instagram
+
+Facebook
+
+E-mail
+
+Links rápidos
+
+Política de Privacidade
+
+Termos de Uso
+
+LGPD
+
+Copyright
+
+---
+
+# EXPERIÊNCIA DO USUÁRIO
+
+Adicionar:
+
+* Animações com Framer Motion
+* Contadores animados
+* Scroll Reveal
+* Botão flutuante do WhatsApp
+* Loading premium
+* Efeitos suaves
+* Transições elegantes
+
+---
+
+# OBJETIVO FINAL
+
+O visitante deve entrar no site e imediatamente pensar:
+
+"Essa empresa é extremamente profissional, confiável e especializada. Quero falar com eles agora."
+
+Priorizar:
+
+1. Credibilidade
+2. Autoridade
+3. Conversão
+4. Elegância
+5. Captação de leads
+6. Geração de contatos via WhatsApp
+7. Download de e-book
+8. Construção de marca

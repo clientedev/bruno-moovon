@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "MOOVON Consulting"
+version = "1.0.0"
+id = "artifacts/moovon"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18740
+
+[services.development]
+run = "pnpm --filter @workspace/moovon run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/moovon", "run", "build" ]
+publicDir = "artifacts/moovon/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18740"
+BASE_PATH = "/"

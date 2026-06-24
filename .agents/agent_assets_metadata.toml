@@ -1,0 +1,14 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "fT7eAbVyiHfZFtm8JTK2Y"
+uri = "file://artifacts/moovon/public/images/hero-bg.png"
+type = "image"
+title = "Hero background image"
+
+[[generated]]
+id = "Ym8jzCJUI8miZuXQX6hyM"
+uri = "file://artifacts/moovon/public/images/bruno-placeholder.png"
+type = "image"
+title = "Professional portrait"

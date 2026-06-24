@@ -3,13 +3,15 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: API specification for MOOVON Consulting
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: leads
+    description: Lead capture operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,56 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /leads:
+    post:
+      operationId: createLead
+      tags: [leads]
+      summary: Create lead
+      description: Capture a lead from the e-book or contact form
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LeadInput"
+      responses:
+        "201":
+          description: Lead created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Lead"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /contact:
+    post:
+      operationId: createContact
+      tags: [leads]
+      summary: Submit contact form
+      description: Submit a contact/consultation request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactInput"
+      responses:
+        "201":
+          description: Contact submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contact"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +85,87 @@ components:
           type: string
       required:
         - status
-
+    Lead:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        whatsapp:
+          type: string
+        createdAt:
+          type: string
+      required:
+        - id
+        - name
+        - email
+        - whatsapp
+        - createdAt
+    LeadInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 2
+        email:
+          type: string
+          format: email
+        whatsapp:
+          type: string
+          minLength: 8
+      required:
+        - name
+        - email
+        - whatsapp
+    Contact:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        message:
+          type: string
+        createdAt:
+          type: string
+      required:
+        - id
+        - name
+        - phone
+        - email
+        - message
+        - createdAt
+    ContactInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 2
+        phone:
+          type: string
+          minLength: 8
+        email:
+          type: string
+          format: email
+        message:
+          type: string
+          minLength: 10
+      required:
+        - name
+        - phone
+        - email
+        - message
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
