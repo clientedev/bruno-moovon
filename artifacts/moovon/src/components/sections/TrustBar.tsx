@@ -58,7 +58,7 @@ export function TrustBar() {
               <img
                 src="/mdrt-logo.png"
                 alt="MDRT Logo"
-                className="w-24 h-24 object-contain flex-shrink-0 drop-shadow-lg"
+                className="w-36 h-36 object-contain flex-shrink-0 drop-shadow-lg -ml-2"
               />
               <div>
                 <h3 className="text-3xl font-serif font-bold text-[#C9A84C] mb-1">MDRT</h3>
