@@ -16,9 +16,9 @@ export function About() {
           >
             <div className="aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl relative z-10">
               <img 
-                src="/images/bruno-placeholder.png" 
+                src="/bruno-saraiva.jpg" 
                 alt="Bruno Saraiva de Castro" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
             {/* Decorative element */}
@@ -64,7 +64,7 @@ export function About() {
             </ul>
 
             <div className="flex items-center gap-6 pt-6 border-t border-border">
-              <img src="/images/bruno-placeholder.png" alt="Assinatura Bruno Saraiva" className="w-16 h-16 rounded-full object-cover opacity-80" />
+              <img src="/bruno-saraiva.jpg" alt="Bruno Saraiva" className="w-16 h-16 rounded-full object-cover object-top" />
               <div>
                 <p className="font-serif font-bold text-xl text-foreground">Bruno Saraiva de Castro</p>
                 <p className="text-sm text-muted-foreground">Fundador & CEO, MOOVON Consulting</p>

@@ -7,13 +7,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
           <div className="lg:col-span-1">
-            <div className="flex flex-col items-start group mb-6">
-              <span className="font-serif text-2xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">
-                MOOVON
-              </span>
-              <span className="text-[0.65rem] uppercase tracking-widest text-gray-400 font-medium">
-                Consulting
-              </span>
+            <div className="mb-6">
+              <img
+                src="/logo-bruno-saraiva.png"
+                alt="Bruno Saraiva"
+                className="h-12 w-auto"
+              />
             </div>
             <p className="text-gray-400 font-light leading-relaxed mb-6 text-sm">
               Protegendo famílias, empresários e patrimônios com excelência e exclusividade há mais de 7 anos.
@@ -91,21 +90,21 @@ export function Footer() {
   );
 }
 
-function MapPin(props: any) {
+function MapPin(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
-      viewBox="0 24"
+      viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 2 16 0Z" />
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z" />
       <circle cx="12" cy="10" r="3" />
     </svg>
   );

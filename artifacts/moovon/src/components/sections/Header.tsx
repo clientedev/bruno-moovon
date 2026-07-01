@@ -34,13 +34,12 @@ export function Header() {
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <a href="#inicio" className="flex flex-col items-start group">
-          <span className="font-serif text-2xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
-            MOOVON
-          </span>
-          <span className="text-[0.65rem] uppercase tracking-widest text-muted-foreground font-medium">
-            Consulting
-          </span>
+        <a href="#inicio" className="flex items-center group">
+          <img
+            src="/logo-bruno-saraiva.png"
+            alt="Bruno Saraiva"
+            className={`h-10 w-auto transition-all duration-300 ${isScrolled ? "brightness-0 dark:brightness-100 invert dark:invert-0" : "brightness-0 invert"}`}
+          />
         </a>
 
         {/* Desktop Nav */}

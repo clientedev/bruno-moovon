@@ -15,10 +15,11 @@ import {
   Pencil,
   Eye,
   EyeOff,
-  ChevronDown,
-  ChevronUp,
   X,
   Download,
+  Menu,
+  ArrowLeft,
+  Home,
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -94,41 +95,54 @@ function AdminLogin({ onSuccess }: { onSuccess: () => void }) {
   }
 
   return (
-    <div className="min-h-screen bg-[#1a1d24] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#0d0f14] flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-10">
-          <h1 className="font-serif text-3xl font-bold text-white mb-1">MOOVON</h1>
+          <img
+            src="/logo-bruno-saraiva.png"
+            alt="Bruno Saraiva"
+            className="h-14 w-auto mx-auto mb-6"
+          />
           <p className="text-xs text-gray-500 tracking-widest uppercase">Área Administrativa</p>
         </div>
         <form
           onSubmit={handleSubmit}
-          className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4"
+          className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4 shadow-2xl"
         >
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm text-gray-400 font-medium">Senha</label>
+            <label className="text-sm text-gray-400 font-medium">Senha de Acesso</label>
             <Input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••••"
-              className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus:border-primary"
+              className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus:border-primary h-11"
               data-testid="input-admin-password"
               required
             />
           </div>
-          {error && <p className="text-red-400 text-sm">{error}</p>}
+          {error && (
+            <div className="bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
+              <p className="text-red-400 text-sm">{error}</p>
+            </div>
+          )}
           <Button
             type="submit"
             disabled={loading}
-            className="w-full bg-primary hover:bg-primary/90 text-white mt-2"
+            className="w-full bg-primary hover:bg-primary/90 text-white mt-2 h-11 text-base font-semibold"
             data-testid="button-admin-login"
           >
-            {loading ? "Entrando..." : "Entrar"}
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                Entrando...
+              </span>
+            ) : "Entrar"}
           </Button>
         </form>
         <p className="text-center mt-6">
-          <a href="/" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">
-            ← Voltar ao site
+          <a href="/" className="text-xs text-gray-600 hover:text-gray-400 transition-colors flex items-center justify-center gap-1">
+            <ArrowLeft className="w-3 h-3" /> Voltar ao site
           </a>
         </p>
       </div>
@@ -162,7 +176,7 @@ function HeroImagesManager() {
         body: JSON.stringify({ data, label: label || undefined, orderIndex: images.length }),
       });
       if (res.ok) {
-        toast({ title: "Imagem adicionada!" });
+        toast({ title: "Imagem adicionada com sucesso!" });
         setLabel("");
         load();
       }
@@ -191,20 +205,23 @@ function HeroImagesManager() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-white text-xl font-semibold">Fotos da Hero Section</h2>
+      <div>
+        <h2 className="text-white text-xl font-semibold">Fotos da Hero Section</h2>
+        <p className="text-gray-500 text-sm mt-1">Gerencie as imagens de fundo da seção principal do site.</p>
+      </div>
 
       <div className="bg-white/5 border border-white/10 rounded-xl p-5 flex flex-col sm:flex-row gap-3 items-end">
-        <div className="flex-1 space-y-2">
-          <label className="text-sm text-gray-400">Legenda (opcional)</label>
+        <div className="flex-1 space-y-1.5">
+          <label className="text-sm text-gray-400 font-medium">Legenda (opcional)</label>
           <Input
             value={label}
             onChange={(e) => setLabel(e.target.value)}
             placeholder="Ex: Família no escritório"
-            className="bg-white/5 border-white/10 text-white placeholder:text-gray-600"
+            className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 h-10"
           />
         </div>
-        <label className="cursor-pointer">
-          <Button asChild className="bg-primary hover:bg-primary/90">
+        <label className="cursor-pointer w-full sm:w-auto">
+          <Button asChild className="bg-primary hover:bg-primary/90 w-full sm:w-auto">
             <span>
               <Plus className="w-4 h-4 mr-2" />
               Adicionar Imagem
@@ -222,10 +239,13 @@ function HeroImagesManager() {
 
       {loading ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {[1,2,3].map(i => <div key={i} className="h-32 rounded-xl bg-white/5 animate-pulse" />)}
+          {[1, 2, 3].map(i => <div key={i} className="h-36 rounded-xl bg-white/5 animate-pulse" />)}
         </div>
       ) : images.length === 0 ? (
-        <p className="text-gray-500 text-center py-12">Nenhuma imagem adicionada ainda.</p>
+        <div className="text-center py-16 border border-dashed border-white/10 rounded-xl">
+          <Image className="w-10 h-10 text-gray-600 mx-auto mb-3" />
+          <p className="text-gray-500">Nenhuma imagem adicionada ainda.</p>
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {images.map((img) => (
@@ -254,8 +274,13 @@ function HeroImagesManager() {
                 </div>
               </div>
               {!img.active && (
-                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                  <span className="text-xs text-gray-400 font-medium bg-black/60 px-2 py-1 rounded">Inativo</span>
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center pointer-events-none">
+                  <span className="text-xs text-gray-300 font-medium bg-black/70 px-3 py-1 rounded-full">Inativo</span>
+                </div>
+              )}
+              {img.active && (
+                <div className="absolute top-2 left-2">
+                  <span className="text-xs text-emerald-300 font-medium bg-emerald-500/20 border border-emerald-500/30 px-2 py-0.5 rounded-full">Ativo</span>
                 </div>
               )}
             </div>
@@ -320,7 +345,7 @@ function AlbumsManager() {
       : await apiFetch("/admin/albums", { method: "POST", body: JSON.stringify(body) });
 
     if (res.ok) {
-      toast({ title: editAlbum ? "Álbum atualizado!" : "Álbum criado!" });
+      toast({ title: editAlbum ? "Álbum atualizado!" : "Álbum criado com sucesso!" });
       setShowForm(false);
       loadAlbums();
     } else {
@@ -343,9 +368,12 @@ function AlbumsManager() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-white text-xl font-semibold">Realizações / Álbuns</h2>
-        <Button onClick={openNew} className="bg-primary hover:bg-primary/90">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="text-white text-xl font-semibold">Realizações / Álbuns</h2>
+          <p className="text-gray-500 text-sm mt-1">Crie álbuns com fotos e vídeos das suas conquistas.</p>
+        </div>
+        <Button onClick={openNew} className="bg-primary hover:bg-primary/90 shrink-0">
           <Plus className="w-4 h-4 mr-2" /> Novo Álbum
         </Button>
       </div>
@@ -353,14 +381,14 @@ function AlbumsManager() {
       {showForm && (
         <div className="bg-white/5 border border-white/10 rounded-xl p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-white font-medium">{editAlbum ? "Editar Álbum" : "Novo Álbum"}</h3>
-            <button onClick={() => setShowForm(false)} className="text-gray-500 hover:text-white">
+            <h3 className="text-white font-semibold">{editAlbum ? "Editar Álbum" : "Novo Álbum"}</h3>
+            <button onClick={() => setShowForm(false)} className="text-gray-500 hover:text-white p-1">
               <X className="w-4 h-4" />
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-sm text-gray-400">Nome *</label>
+              <label className="text-sm text-gray-400 font-medium">Nome *</label>
               <Input
                 value={form.name}
                 onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
@@ -370,7 +398,7 @@ function AlbumsManager() {
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-sm text-gray-400">Ordem</label>
+              <label className="text-sm text-gray-400 font-medium">Ordem de Exibição</label>
               <Input
                 type="number"
                 value={form.orderIndex}
@@ -380,7 +408,7 @@ function AlbumsManager() {
             </div>
           </div>
           <div className="space-y-1.5">
-            <label className="text-sm text-gray-400">Descrição</label>
+            <label className="text-sm text-gray-400 font-medium">Descrição</label>
             <Textarea
               value={form.description}
               onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
@@ -390,30 +418,30 @@ function AlbumsManager() {
             />
           </div>
           <div className="space-y-1.5">
-            <label className="text-sm text-gray-400">Imagem de Capa</label>
+            <label className="text-sm text-gray-400 font-medium">Imagem de Capa</label>
             <div className="flex items-center gap-3">
               {form.coverImage && (
                 <img src={form.coverImage} alt="Capa" className="h-16 w-24 object-cover rounded-lg border border-white/10" />
               )}
               <label className="cursor-pointer">
-                <Button variant="outline" size="sm" asChild className="border-white/20 text-gray-300 hover:text-white">
+                <Button variant="outline" size="sm" asChild className="border-white/20 text-gray-300 hover:text-white hover:bg-white/10">
                   <span>
                     <Image className="w-4 h-4 mr-2" />
-                    {form.coverImage ? "Trocar" : "Selecionar"}
+                    {form.coverImage ? "Trocar Capa" : "Selecionar Capa"}
                   </span>
                 </Button>
                 <input type="file" accept="image/*" className="hidden" onChange={handleCoverFile} />
               </label>
               {form.coverImage && (
-                <button onClick={() => setForm((f) => ({ ...f, coverImage: "" }))} className="text-gray-500 hover:text-red-400">
+                <button onClick={() => setForm((f) => ({ ...f, coverImage: "" }))} className="text-gray-500 hover:text-red-400 p-1">
                   <X className="w-4 h-4" />
                 </button>
               )}
             </div>
           </div>
-          <div className="flex gap-3 pt-2">
+          <div className="flex gap-3 pt-2 border-t border-white/5">
             <Button onClick={handleSave} className="bg-primary hover:bg-primary/90" data-testid="button-album-save">
-              Salvar
+              Salvar Álbum
             </Button>
             <Button variant="ghost" onClick={() => setShowForm(false)} className="text-gray-400 hover:text-white">
               Cancelar
@@ -424,16 +452,20 @@ function AlbumsManager() {
 
       {loading ? (
         <div className="space-y-3">
-          {[1,2,3].map(i => <div key={i} className="h-16 rounded-xl bg-white/5 animate-pulse" />)}
+          {[1, 2, 3].map(i => <div key={i} className="h-20 rounded-xl bg-white/5 animate-pulse" />)}
         </div>
       ) : albums.length === 0 ? (
-        <p className="text-gray-500 text-center py-12">Nenhum álbum criado ainda.</p>
+        <div className="text-center py-16 border border-dashed border-white/10 rounded-xl">
+          <FolderOpen className="w-10 h-10 text-gray-600 mx-auto mb-3" />
+          <p className="text-gray-500">Nenhum álbum criado ainda.</p>
+          <p className="text-gray-600 text-sm mt-1">Clique em "Novo Álbum" para começar.</p>
+        </div>
       ) : (
         <div className="space-y-3">
           {albums.map((album) => (
             <div
               key={album.id}
-              className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-4"
+              className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-4 hover:bg-white/[0.07] transition-colors"
             >
               {album.coverImage ? (
                 <img src={album.coverImage} alt="" className="w-14 h-14 object-cover rounded-lg flex-shrink-0" />
@@ -445,17 +477,25 @@ function AlbumsManager() {
               <div className="flex-1 min-w-0">
                 <p className="text-white font-medium truncate">{album.name}</p>
                 {album.description && (
-                  <p className="text-gray-500 text-sm truncate">{album.description}</p>
+                  <p className="text-gray-500 text-sm truncate mt-0.5">{album.description}</p>
                 )}
               </div>
-              <div className="flex gap-2 flex-shrink-0">
+              <div className="flex gap-1.5 flex-shrink-0">
                 <Button
                   size="sm"
                   variant="ghost"
                   onClick={() => setManageAlbum(album)}
-                  className="text-gray-400 hover:text-white text-xs gap-1.5"
+                  className="text-gray-400 hover:text-white text-xs gap-1.5 hidden sm:flex"
                 >
                   <FolderOpen className="w-3.5 h-3.5" /> Mídia
+                </Button>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => setManageAlbum(album)}
+                  className="h-8 w-8 text-gray-400 hover:text-white sm:hidden"
+                >
+                  <FolderOpen className="w-3.5 h-3.5" />
                 </Button>
                 <Button
                   size="icon"
@@ -541,37 +581,34 @@ function AlbumMediaManager({ album, onBack }: { album: Album; onBack: () => void
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <button onClick={onBack} className="text-gray-400 hover:text-white transition-colors">
-          ← Voltar
+        <button
+          onClick={onBack}
+          className="flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors text-sm"
+        >
+          <ArrowLeft className="w-4 h-4" /> Voltar
         </button>
-        <h2 className="text-white text-xl font-semibold">Mídia: {album.name}</h2>
+        <div className="w-px h-4 bg-white/10" />
+        <h2 className="text-white text-xl font-semibold">{album.name}</h2>
       </div>
 
       <div className="bg-white/5 border border-white/10 rounded-xl p-6 space-y-4">
-        <h3 className="text-white font-medium">Adicionar Mídia</h3>
+        <h3 className="text-white font-semibold">Adicionar Mídia</h3>
         <div className="flex gap-4">
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="radio"
-              checked={mediaType === "image"}
-              onChange={() => setMediaType("image")}
-              className="accent-primary"
-            />
-            <span className="text-sm text-gray-300">Imagem</span>
-          </label>
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="radio"
-              checked={mediaType === "video"}
-              onChange={() => setMediaType("video")}
-              className="accent-primary"
-            />
-            <span className="text-sm text-gray-300">Vídeo (URL)</span>
-          </label>
+          {(["image", "video"] as const).map((type) => (
+            <label key={type} className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                checked={mediaType === type}
+                onChange={() => setMediaType(type)}
+                className="accent-primary"
+              />
+              <span className="text-sm text-gray-300">{type === "image" ? "Imagem" : "Vídeo (URL)"}</span>
+            </label>
+          ))}
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-sm text-gray-400">Legenda (opcional)</label>
+          <label className="text-sm text-gray-400 font-medium">Legenda (opcional)</label>
           <Input
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
@@ -591,14 +628,14 @@ function AlbumMediaManager({ album, onBack }: { album: Album; onBack: () => void
             <input type="file" accept="image/*" className="hidden" onChange={handleAddImage} />
           </label>
         ) : (
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <Input
               value={videoUrl}
               onChange={(e) => setVideoUrl(e.target.value)}
               placeholder="https://www.youtube.com/watch?v=..."
               className="flex-1 bg-white/5 border-white/10 text-white placeholder:text-gray-600"
             />
-            <Button onClick={handleAddVideo} className="bg-primary hover:bg-primary/90 flex-shrink-0">
+            <Button onClick={handleAddVideo} className="bg-primary hover:bg-primary/90 shrink-0">
               <Plus className="w-4 h-4 mr-2" /> Adicionar
             </Button>
           </div>
@@ -607,10 +644,13 @@ function AlbumMediaManager({ album, onBack }: { album: Album; onBack: () => void
 
       {loading ? (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[1,2,3,4].map(i => <div key={i} className="h-28 rounded-xl bg-white/5 animate-pulse" />)}
+          {[1, 2, 3, 4].map(i => <div key={i} className="h-28 rounded-xl bg-white/5 animate-pulse" />)}
         </div>
       ) : media.length === 0 ? (
-        <p className="text-gray-500 text-center py-12">Nenhuma mídia adicionada ainda.</p>
+        <div className="text-center py-12 border border-dashed border-white/10 rounded-xl">
+          <Image className="w-8 h-8 text-gray-600 mx-auto mb-2" />
+          <p className="text-gray-500 text-sm">Nenhuma mídia adicionada.</p>
+        </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {media.map((item) => (
@@ -627,7 +667,7 @@ function AlbumMediaManager({ album, onBack }: { album: Album; onBack: () => void
               )}
               <button
                 onClick={() => deleteMedia(item.id)}
-                className="absolute top-2 right-2 p-1.5 bg-red-500/80 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute top-2 right-2 p-1.5 bg-red-500/80 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500"
               >
                 <Trash2 className="w-3 h-3 text-white" />
               </button>
@@ -665,33 +705,41 @@ function LeadsViewer() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-white text-xl font-semibold">Leads Captados ({leads.length})</h2>
-        <Button variant="outline" size="sm" onClick={exportCsv} className="border-white/20 text-gray-300 hover:text-white gap-1.5">
-          <Download className="w-3.5 h-3.5" /> Exportar CSV
-        </Button>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="text-white text-xl font-semibold">Leads Captados</h2>
+          <p className="text-gray-500 text-sm mt-1">{leads.length} lead{leads.length !== 1 ? "s" : ""} registrado{leads.length !== 1 ? "s" : ""}.</p>
+        </div>
+        {leads.length > 0 && (
+          <Button variant="outline" size="sm" onClick={exportCsv} className="border-white/20 text-gray-300 hover:text-white hover:bg-white/10 gap-1.5 shrink-0">
+            <Download className="w-3.5 h-3.5" /> Exportar CSV
+          </Button>
+        )}
       </div>
       {loading ? (
-        <div className="space-y-2">{[1,2,3].map(i => <div key={i} className="h-12 rounded bg-white/5 animate-pulse" />)}</div>
+        <div className="space-y-2">{[1, 2, 3].map(i => <div key={i} className="h-14 rounded-xl bg-white/5 animate-pulse" />)}</div>
       ) : leads.length === 0 ? (
-        <p className="text-gray-500 text-center py-12">Nenhum lead ainda.</p>
+        <div className="text-center py-16 border border-dashed border-white/10 rounded-xl">
+          <Users className="w-10 h-10 text-gray-600 mx-auto mb-3" />
+          <p className="text-gray-500">Nenhum lead captado ainda.</p>
+        </div>
       ) : (
         <div className="overflow-x-auto rounded-xl border border-white/10">
-          <table className="w-full text-sm">
-            <thead className="bg-white/5">
+          <table className="w-full text-sm min-w-[500px]">
+            <thead className="bg-white/5 border-b border-white/10">
               <tr>
                 {["Nome", "E-mail", "WhatsApp", "Data"].map(h => (
-                  <th key={h} className="text-left text-gray-400 font-medium px-4 py-3">{h}</th>
+                  <th key={h} className="text-left text-gray-400 font-semibold px-4 py-3 text-xs uppercase tracking-wider">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
               {leads.map(lead => (
                 <tr key={lead.id} className="hover:bg-white/5 transition-colors">
-                  <td className="px-4 py-3 text-white">{lead.name}</td>
+                  <td className="px-4 py-3 text-white font-medium">{lead.name}</td>
                   <td className="px-4 py-3 text-gray-300">{lead.email}</td>
                   <td className="px-4 py-3 text-gray-300">{lead.whatsapp}</td>
-                  <td className="px-4 py-3 text-gray-500">{new Date(lead.createdAt).toLocaleDateString("pt-BR")}</td>
+                  <td className="px-4 py-3 text-gray-500 whitespace-nowrap">{new Date(lead.createdAt).toLocaleDateString("pt-BR")}</td>
                 </tr>
               ))}
             </tbody>
@@ -701,6 +749,8 @@ function LeadsViewer() {
     </div>
   );
 }
+
+// ─── Contacts Viewer ──────────────────────────────────────────────────────────
 
 function ContactsViewer() {
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -726,34 +776,42 @@ function ContactsViewer() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-white text-xl font-semibold">Contatos ({contacts.length})</h2>
-        <Button variant="outline" size="sm" onClick={exportCsv} className="border-white/20 text-gray-300 hover:text-white gap-1.5">
-          <Download className="w-3.5 h-3.5" /> Exportar CSV
-        </Button>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="text-white text-xl font-semibold">Contatos</h2>
+          <p className="text-gray-500 text-sm mt-1">{contacts.length} mensagen{contacts.length !== 1 ? "s" : ""} recebida{contacts.length !== 1 ? "s" : ""}.</p>
+        </div>
+        {contacts.length > 0 && (
+          <Button variant="outline" size="sm" onClick={exportCsv} className="border-white/20 text-gray-300 hover:text-white hover:bg-white/10 gap-1.5 shrink-0">
+            <Download className="w-3.5 h-3.5" /> Exportar CSV
+          </Button>
+        )}
       </div>
       {loading ? (
-        <div className="space-y-2">{[1,2,3].map(i => <div key={i} className="h-12 rounded bg-white/5 animate-pulse" />)}</div>
+        <div className="space-y-2">{[1, 2, 3].map(i => <div key={i} className="h-14 rounded-xl bg-white/5 animate-pulse" />)}</div>
       ) : contacts.length === 0 ? (
-        <p className="text-gray-500 text-center py-12">Nenhum contato ainda.</p>
+        <div className="text-center py-16 border border-dashed border-white/10 rounded-xl">
+          <Mail className="w-10 h-10 text-gray-600 mx-auto mb-3" />
+          <p className="text-gray-500">Nenhum contato recebido ainda.</p>
+        </div>
       ) : (
         <div className="overflow-x-auto rounded-xl border border-white/10">
-          <table className="w-full text-sm">
-            <thead className="bg-white/5">
+          <table className="w-full text-sm min-w-[600px]">
+            <thead className="bg-white/5 border-b border-white/10">
               <tr>
                 {["Nome", "Telefone", "E-mail", "Mensagem", "Data"].map(h => (
-                  <th key={h} className="text-left text-gray-400 font-medium px-4 py-3">{h}</th>
+                  <th key={h} className="text-left text-gray-400 font-semibold px-4 py-3 text-xs uppercase tracking-wider">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
               {contacts.map(c => (
                 <tr key={c.id} className="hover:bg-white/5 transition-colors">
-                  <td className="px-4 py-3 text-white">{c.name}</td>
-                  <td className="px-4 py-3 text-gray-300">{c.phone}</td>
+                  <td className="px-4 py-3 text-white font-medium whitespace-nowrap">{c.name}</td>
+                  <td className="px-4 py-3 text-gray-300 whitespace-nowrap">{c.phone}</td>
                   <td className="px-4 py-3 text-gray-300">{c.email}</td>
-                  <td className="px-4 py-3 text-gray-400 max-w-xs truncate">{c.message}</td>
-                  <td className="px-4 py-3 text-gray-500">{new Date(c.createdAt).toLocaleDateString("pt-BR")}</td>
+                  <td className="px-4 py-3 text-gray-400 max-w-[200px] truncate">{c.message}</td>
+                  <td className="px-4 py-3 text-gray-500 whitespace-nowrap">{new Date(c.createdAt).toLocaleDateString("pt-BR")}</td>
                 </tr>
               ))}
             </tbody>
@@ -768,17 +826,19 @@ function ContactsViewer() {
 
 type Section = "albums" | "hero" | "leads" | "contacts";
 
-const navItems: { id: Section; label: string; icon: React.ReactNode }[] = [
-  { id: "albums", label: "Realizações", icon: <FolderOpen className="w-4 h-4" /> },
-  { id: "hero", label: "Fotos da Hero", icon: <Image className="w-4 h-4" /> },
-  { id: "leads", label: "Leads", icon: <Users className="w-4 h-4" /> },
-  { id: "contacts", label: "Contatos", icon: <Mail className="w-4 h-4" /> },
+const navItems: { id: Section; label: string; icon: React.ReactNode; desc: string }[] = [
+  { id: "albums", label: "Realizações", icon: <FolderOpen className="w-4 h-4" />, desc: "Álbuns e fotos" },
+  { id: "hero", label: "Fotos da Hero", icon: <Image className="w-4 h-4" />, desc: "Imagens de fundo" },
+  { id: "leads", label: "Leads", icon: <Users className="w-4 h-4" />, desc: "Contatos captados" },
+  { id: "contacts", label: "Contatos", icon: <Mail className="w-4 h-4" />, desc: "Mensagens recebidas" },
 ];
 
 function AdminDashboard({ onLogout }: { onLogout: () => void }) {
   const [section, setSection] = useState<Section>("albums");
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { toast } = useToast();
+
+  const currentItem = navItems.find(i => i.id === section);
 
   async function handleLogout() {
     await apiFetch("/admin/logout", { method: "POST" });
@@ -787,72 +847,123 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f1117] flex flex-col md:flex-row">
-      {/* Sidebar */}
-      <aside className="w-full md:w-60 bg-[#1a1d24] border-b md:border-b-0 md:border-r border-white/10 flex-shrink-0">
-        <div className="p-5 border-b border-white/10 flex items-center justify-between">
-          <div>
-            <h1 className="font-serif text-white font-bold">MOOVON</h1>
-            <p className="text-xs text-gray-500">Painel Administrativo</p>
+    <div className="min-h-screen bg-[#0d0f14] flex flex-col">
+      {/* Top Bar (mobile) */}
+      <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#1a1d24] border-b border-white/10">
+        <img src="/logo-bruno-saraiva.png" alt="Bruno Saraiva" className="h-8 w-auto" />
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="text-gray-400 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Mobile Sidebar Overlay */}
+      {sidebarOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/60 z-40"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar */}
+        <aside className={`
+          fixed lg:relative inset-y-0 left-0 z-50 lg:z-auto
+          w-64 bg-[#1a1d24] border-r border-white/10
+          flex flex-col
+          transform transition-transform duration-200 ease-in-out
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
+        `}>
+          {/* Sidebar Header */}
+          <div className="p-5 border-b border-white/10">
+            <img src="/logo-bruno-saraiva.png" alt="Bruno Saraiva" className="h-10 w-auto mb-3 hidden lg:block" />
+            <div className="flex items-center justify-between lg:justify-start">
+              <p className="text-xs text-gray-500 uppercase tracking-widest font-medium">Painel Administrativo</p>
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="lg:hidden text-gray-500 hover:text-white p-1"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
           </div>
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden text-gray-400 hover:text-white"
-          >
-            {mobileOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
-          </button>
-        </div>
-        <nav className={`${mobileOpen ? "block" : "hidden"} md:block p-3 space-y-1`}>
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => { setSection(item.id); setMobileOpen(false); }}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
-                section === item.id
-                  ? "bg-primary/20 text-primary font-medium"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
-              }`}
-              data-testid={`nav-admin-${item.id}`}
+
+          {/* Nav */}
+          <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => { setSection(item.id); setSidebarOpen(false); }}
+                className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm transition-all text-left ${
+                  section === item.id
+                    ? "bg-primary/15 text-primary border border-primary/20"
+                    : "text-gray-400 hover:text-white hover:bg-white/5 border border-transparent"
+                }`}
+                data-testid={`nav-admin-${item.id}`}
+              >
+                <span className={`p-1.5 rounded-lg ${section === item.id ? "bg-primary/20" : "bg-white/5"}`}>
+                  {item.icon}
+                </span>
+                <div className="text-left">
+                  <div className="font-medium leading-tight">{item.label}</div>
+                  <div className="text-[0.7rem] opacity-60 leading-tight mt-0.5">{item.desc}</div>
+                </div>
+              </button>
+            ))}
+          </nav>
+
+          {/* Sidebar Footer */}
+          <div className="p-3 border-t border-white/10 space-y-1">
+            <a
+              href="/"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-500 hover:text-white hover:bg-white/5 transition-all"
             >
-              {item.icon}
-              {item.label}
+              <Home className="w-4 h-4" />
+              Ver site
+            </a>
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-500 hover:text-red-400 hover:bg-red-500/10 transition-all"
+              data-testid="button-admin-logout"
+            >
+              <LogOut className="w-4 h-4" />
+              Sair
             </button>
-          ))}
-        </nav>
-        <div className="p-3 mt-auto border-t border-white/10 hidden md:block">
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:text-red-400 hover:bg-red-500/10 transition-all"
-            data-testid="button-admin-logout"
-          >
-            <LogOut className="w-4 h-4" />
-            Sair
-          </button>
-          <a href="/" className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:text-white hover:bg-white/5 transition-all mt-1">
-            ← Ver site
-          </a>
-        </div>
-      </aside>
+          </div>
+        </aside>
 
-      {/* Main Content */}
-      <main className="flex-1 p-6 md:p-8 overflow-auto">
-        <div className="max-w-5xl mx-auto">
-          {section === "albums" && <AlbumsManager />}
-          {section === "hero" && <HeroImagesManager />}
-          {section === "leads" && <LeadsViewer />}
-          {section === "contacts" && <ContactsViewer />}
-        </div>
+        {/* Main Content */}
+        <main className="flex-1 overflow-auto">
+          {/* Page Header */}
+          <div className="border-b border-white/10 px-6 py-4 bg-[#12141a] hidden lg:flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span className="text-gray-600 text-sm">Painel</span>
+              <span className="text-gray-600">/</span>
+              <span className="text-white text-sm font-medium">{currentItem?.label}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <a href="/" className="text-xs text-gray-500 hover:text-white transition-colors flex items-center gap-1.5">
+                <Home className="w-3.5 h-3.5" /> Ver site
+              </a>
+              <div className="w-px h-4 bg-white/10" />
+              <button onClick={handleLogout} className="text-xs text-gray-500 hover:text-red-400 transition-colors flex items-center gap-1.5">
+                <LogOut className="w-3.5 h-3.5" /> Sair
+              </button>
+            </div>
+          </div>
 
-        {/* Mobile logout */}
-        <div className="md:hidden mt-8 flex gap-4">
-          <a href="/" className="text-sm text-gray-500 hover:text-white transition-colors">
-            ← Ver site
-          </a>
-          <button onClick={handleLogout} className="text-sm text-gray-500 hover:text-red-400 transition-colors">
-            Sair
-          </button>
-        </div>
-      </main>
+          <div className="p-4 sm:p-6 lg:p-8">
+            <div className="max-w-5xl mx-auto">
+              {section === "albums" && <AlbumsManager />}
+              {section === "hero" && <HeroImagesManager />}
+              {section === "leads" && <LeadsViewer />}
+              {section === "contacts" && <ContactsViewer />}
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
@@ -873,8 +984,11 @@ export function Admin() {
 
   if (authState === "loading") {
     return (
-      <div className="min-h-screen bg-[#1a1d24] flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+      <div className="min-h-screen bg-[#0d0f14] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <img src="/logo-bruno-saraiva.png" alt="Bruno Saraiva" className="h-12 w-auto opacity-50" />
+          <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+        </div>
       </div>
     );
   }

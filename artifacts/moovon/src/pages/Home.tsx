@@ -3,10 +3,10 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { About } from "@/components/sections/About";
 import { Solutions } from "@/components/sections/Solutions";
+import { Realizacoes } from "@/components/sections/Realizacoes";
 import { Differentials } from "@/components/sections/Differentials";
 import { Process } from "@/components/sections/Process";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { Realizacoes } from "@/components/sections/Realizacoes";
 import { Mentoria } from "@/components/sections/Mentoria";
 import { EbookCapture } from "@/components/sections/EbookCapture";
 import { FAQ } from "@/components/sections/FAQ";
@@ -22,10 +22,10 @@ export function Home() {
         <TrustBar />
         <About />
         <Solutions />
+        <Realizacoes />
         <Differentials />
         <Process />
         <Testimonials />
-        <Realizacoes />
         <Mentoria />
         <EbookCapture />
         <FAQ />
