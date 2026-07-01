@@ -68,19 +68,30 @@ export function About() {
               <div>
                 <p className="font-serif font-bold text-xl text-foreground">Bruno Saraiva de Castro</p>
                 <p className="text-sm text-muted-foreground">Fundador & CEO, BSeguros</p>
-                {/* Certification seals — discreet, right below name/title */}
-                <div className="flex items-center gap-4 mt-2">
-                  <img
-                    src="/mdrt-logo.png"
-                    alt="MDRT"
-                    className="h-7 w-auto object-contain opacity-70 dark:opacity-50 dark:invert"
-                  />
-                  <div className="w-px h-5 bg-border" />
-                  <img
-                    src="/atcb-selo.png"
-                    alt="ATCB"
-                    className="h-7 w-auto object-contain opacity-70"
-                  />
+                {/* Certification seals */}
+                <div className="flex flex-wrap items-stretch gap-2 mt-3">
+                  <div className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-muted/60 border border-border/60">
+                    <img
+                      src="/mdrt-logo.png"
+                      alt="MDRT"
+                      className="h-9 w-auto object-contain flex-shrink-0 brightness-0 dark:invert opacity-80"
+                    />
+                    <div>
+                      <p className="text-xs font-bold text-foreground leading-tight">MDRT</p>
+                      <p className="text-[10px] text-muted-foreground leading-tight">Million Dollar Round Table</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-muted/60 border border-border/60">
+                    <img
+                      src="/atcb-selo.png"
+                      alt="ATCB"
+                      className="h-9 w-auto object-contain flex-shrink-0 opacity-80"
+                    />
+                    <div>
+                      <p className="text-xs font-bold text-foreground leading-tight">ATCB</p>
+                      <p className="text-[10px] text-muted-foreground leading-tight">Top Corretores do Brasil</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
