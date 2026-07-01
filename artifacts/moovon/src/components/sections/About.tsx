@@ -154,7 +154,7 @@ export function About() {
             <span>@moovonconsulting</span>
           </a>
           <a
-            href="https://linkedin.com/in/brunosaraivadeseguros"
+            href="https://www.linkedin.com/in/brunosaraivadecastro/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
