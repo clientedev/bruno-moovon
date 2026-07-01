@@ -1,16 +1,60 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
+interface HeroImage {
+  id: string;
+  data: string;
+  label?: string;
+  active: boolean;
+  orderIndex: number;
+}
+
 export function Hero() {
+  const [images, setImages] = useState<HeroImage[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    fetch("/api/hero-images")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          const activeImages = data.filter((img) => img.active).sort((a, b) => a.orderIndex - b.orderIndex);
+          if (activeImages.length > 0) {
+            setImages(activeImages);
+          }
+        }
+      })
+      .catch((err) => console.error("Failed to load hero images", err));
+  }, []);
+
+  useEffect(() => {
+    if (images.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [images]);
+
+  const currentImage = images.length > 0 ? images[currentIndex].data : "/images/hero-bg.png";
+
   return (
     <section id="inicio" className="relative min-h-[100dvh] flex items-center justify-center pt-20 overflow-hidden">
       {/* Background Image & Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/hero-bg.png"
-          alt="Família e prosperidade"
-          className="w-full h-full object-cover object-center"
-        />
+      <div className="absolute inset-0 z-0 bg-black">
+        <AnimatePresence mode="popLayout">
+          <motion.img
+            key={currentImage}
+            src={currentImage}
+            alt="Hero Background"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+        </AnimatePresence>
         <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/70 to-secondary/30 dark:from-background dark:via-background/80 dark:to-background/20" />
       </div>
 
@@ -78,6 +122,22 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
+
+      {/* Pagination Dots */}
+      {images.length > 1 && (
+        <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-3 z-20">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                i === currentIndex ? "bg-primary w-8" : "bg-white/50 hover:bg-white/80"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
