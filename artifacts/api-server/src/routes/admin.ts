@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { db } from "@workspace/db";
-import { albumsTable, albumMediaTable, heroImagesTable } from "@workspace/db";
-import { eq, asc } from "drizzle-orm";
+import { albumsTable, albumMediaTable, heroImagesTable, testimonialsTable, leadsTable, contactsTable } from "@workspace/db";
+import { eq, asc, desc } from "drizzle-orm";
 import { requireAdmin } from "../middleware/adminAuth";
 import { z } from "zod";
 
@@ -9,7 +9,7 @@ const router = Router();
 
 const ADMIN_PASSWORD = process.env["ADMIN_PASSWORD"] ?? "bruno2026**";
 
-// ─── Auth ────────────────────────────────────────────────────────────────────
+// ─── Auth ─────────────────────────────────────────────────────────────────────
 
 router.post("/admin/login", (req, res) => {
   const { password } = req.body as { password?: string };
@@ -22,9 +22,7 @@ router.post("/admin/login", (req, res) => {
 });
 
 router.post("/admin/logout", (req, res) => {
-  req.session.destroy(() => {
-    res.json({ ok: true });
-  });
+  req.session.destroy(() => { res.json({ ok: true }); });
 });
 
 router.get("/admin/me", (req, res) => {
@@ -35,14 +33,11 @@ router.get("/admin/me", (req, res) => {
   }
 });
 
-// ─── Hero Images ─────────────────────────────────────────────────────────────
+// ─── Hero Images ──────────────────────────────────────────────────────────────
 
 router.get("/admin/hero-images", requireAdmin, async (req, res) => {
   try {
-    const images = await db
-      .select()
-      .from(heroImagesTable)
-      .orderBy(asc(heroImagesTable.orderIndex));
+    const images = await db.select().from(heroImagesTable).orderBy(asc(heroImagesTable.orderIndex));
     res.json(images);
   } catch (err) {
     req.log.error({ err }, "Failed to fetch hero images");
@@ -59,16 +54,10 @@ const heroImageSchema = z.object({
 
 router.post("/admin/hero-images", requireAdmin, async (req, res) => {
   const parsed = heroImageSchema.safeParse(req.body);
-  if (!parsed.success) {
-    res.status(400).json({ error: "Dados inválidos" });
-    return;
-  }
+  if (!parsed.success) { res.status(400).json({ error: "Dados inválidos" }); return; }
   try {
     const count = await db.select().from(heroImagesTable);
-    const [image] = await db
-      .insert(heroImagesTable)
-      .values({ ...parsed.data, orderIndex: parsed.data.orderIndex ?? count.length })
-      .returning();
+    const [image] = await db.insert(heroImagesTable).values({ ...parsed.data, orderIndex: parsed.data.orderIndex ?? count.length }).returning();
     res.status(201).json(image);
   } catch (err) {
     req.log.error({ err }, "Failed to create hero image");
@@ -79,16 +68,9 @@ router.post("/admin/hero-images", requireAdmin, async (req, res) => {
 router.put("/admin/hero-images/:id", requireAdmin, async (req, res) => {
   const id = Number(req.params["id"]);
   const parsed = heroImageSchema.partial().safeParse(req.body);
-  if (!parsed.success || isNaN(id)) {
-    res.status(400).json({ error: "Dados inválidos" });
-    return;
-  }
+  if (!parsed.success || isNaN(id)) { res.status(400).json({ error: "Dados inválidos" }); return; }
   try {
-    const [image] = await db
-      .update(heroImagesTable)
-      .set(parsed.data)
-      .where(eq(heroImagesTable.id, id))
-      .returning();
+    const [image] = await db.update(heroImagesTable).set(parsed.data).where(eq(heroImagesTable.id, id)).returning();
     res.json(image);
   } catch (err) {
     req.log.error({ err }, "Failed to update hero image");
@@ -98,10 +80,7 @@ router.put("/admin/hero-images/:id", requireAdmin, async (req, res) => {
 
 router.delete("/admin/hero-images/:id", requireAdmin, async (req, res) => {
   const id = Number(req.params["id"]);
-  if (isNaN(id)) {
-    res.status(400).json({ error: "ID inválido" });
-    return;
-  }
+  if (isNaN(id)) { res.status(400).json({ error: "ID inválido" }); return; }
   try {
     await db.delete(heroImagesTable).where(eq(heroImagesTable.id, id));
     res.json({ ok: true });
@@ -111,14 +90,11 @@ router.delete("/admin/hero-images/:id", requireAdmin, async (req, res) => {
   }
 });
 
-// ─── Albums ──────────────────────────────────────────────────────────────────
+// ─── Albums ───────────────────────────────────────────────────────────────────
 
 router.get("/admin/albums", requireAdmin, async (req, res) => {
   try {
-    const albums = await db
-      .select()
-      .from(albumsTable)
-      .orderBy(asc(albumsTable.orderIndex));
+    const albums = await db.select().from(albumsTable).orderBy(asc(albumsTable.orderIndex));
     res.json(albums);
   } catch (err) {
     req.log.error({ err }, "Failed to fetch albums");
@@ -135,16 +111,10 @@ const albumSchema = z.object({
 
 router.post("/admin/albums", requireAdmin, async (req, res) => {
   const parsed = albumSchema.safeParse(req.body);
-  if (!parsed.success) {
-    res.status(400).json({ error: "Dados inválidos" });
-    return;
-  }
+  if (!parsed.success) { res.status(400).json({ error: "Dados inválidos" }); return; }
   try {
     const count = await db.select().from(albumsTable);
-    const [album] = await db
-      .insert(albumsTable)
-      .values({ ...parsed.data, orderIndex: parsed.data.orderIndex ?? count.length })
-      .returning();
+    const [album] = await db.insert(albumsTable).values({ ...parsed.data, orderIndex: parsed.data.orderIndex ?? count.length }).returning();
     res.status(201).json(album);
   } catch (err) {
     req.log.error({ err }, "Failed to create album");
@@ -155,16 +125,9 @@ router.post("/admin/albums", requireAdmin, async (req, res) => {
 router.put("/admin/albums/:id", requireAdmin, async (req, res) => {
   const id = Number(req.params["id"]);
   const parsed = albumSchema.partial().safeParse(req.body);
-  if (!parsed.success || isNaN(id)) {
-    res.status(400).json({ error: "Dados inválidos" });
-    return;
-  }
+  if (!parsed.success || isNaN(id)) { res.status(400).json({ error: "Dados inválidos" }); return; }
   try {
-    const [album] = await db
-      .update(albumsTable)
-      .set({ ...parsed.data, updatedAt: new Date() })
-      .where(eq(albumsTable.id, id))
-      .returning();
+    const [album] = await db.update(albumsTable).set({ ...parsed.data, updatedAt: new Date() }).where(eq(albumsTable.id, id)).returning();
     res.json(album);
   } catch (err) {
     req.log.error({ err }, "Failed to update album");
@@ -174,10 +137,7 @@ router.put("/admin/albums/:id", requireAdmin, async (req, res) => {
 
 router.delete("/admin/albums/:id", requireAdmin, async (req, res) => {
   const id = Number(req.params["id"]);
-  if (isNaN(id)) {
-    res.status(400).json({ error: "ID inválido" });
-    return;
-  }
+  if (isNaN(id)) { res.status(400).json({ error: "ID inválido" }); return; }
   try {
     await db.delete(albumsTable).where(eq(albumsTable.id, id));
     res.json({ ok: true });
@@ -187,20 +147,13 @@ router.delete("/admin/albums/:id", requireAdmin, async (req, res) => {
   }
 });
 
-// ─── Album Media ─────────────────────────────────────────────────────────────
+// ─── Album Media ──────────────────────────────────────────────────────────────
 
 router.get("/admin/albums/:id/media", requireAdmin, async (req, res) => {
   const albumId = Number(req.params["id"]);
-  if (isNaN(albumId)) {
-    res.status(400).json({ error: "ID inválido" });
-    return;
-  }
+  if (isNaN(albumId)) { res.status(400).json({ error: "ID inválido" }); return; }
   try {
-    const media = await db
-      .select()
-      .from(albumMediaTable)
-      .where(eq(albumMediaTable.albumId, albumId))
-      .orderBy(asc(albumMediaTable.orderIndex));
+    const media = await db.select().from(albumMediaTable).where(eq(albumMediaTable.albumId, albumId)).orderBy(asc(albumMediaTable.orderIndex));
     res.json(media);
   } catch (err) {
     req.log.error({ err }, "Failed to fetch album media");
@@ -217,21 +170,12 @@ const mediaSchema = z.object({
 
 router.post("/admin/albums/:id/media", requireAdmin, async (req, res) => {
   const albumId = Number(req.params["id"]);
-  if (isNaN(albumId)) {
-    res.status(400).json({ error: "ID inválido" });
-    return;
-  }
+  if (isNaN(albumId)) { res.status(400).json({ error: "ID inválido" }); return; }
   const parsed = mediaSchema.safeParse(req.body);
-  if (!parsed.success) {
-    res.status(400).json({ error: "Dados inválidos" });
-    return;
-  }
+  if (!parsed.success) { res.status(400).json({ error: "Dados inválidos" }); return; }
   try {
     const existing = await db.select().from(albumMediaTable).where(eq(albumMediaTable.albumId, albumId));
-    const [media] = await db
-      .insert(albumMediaTable)
-      .values({ ...parsed.data, albumId, orderIndex: parsed.data.orderIndex ?? existing.length })
-      .returning();
+    const [media] = await db.insert(albumMediaTable).values({ ...parsed.data, albumId, orderIndex: parsed.data.orderIndex ?? existing.length }).returning();
     res.status(201).json(media);
   } catch (err) {
     req.log.error({ err }, "Failed to add album media");
@@ -241,10 +185,7 @@ router.post("/admin/albums/:id/media", requireAdmin, async (req, res) => {
 
 router.delete("/admin/albums/:albumId/media/:mediaId", requireAdmin, async (req, res) => {
   const mediaId = Number(req.params["mediaId"]);
-  if (isNaN(mediaId)) {
-    res.status(400).json({ error: "ID inválido" });
-    return;
-  }
+  if (isNaN(mediaId)) { res.status(400).json({ error: "ID inválido" }); return; }
   try {
     await db.delete(albumMediaTable).where(eq(albumMediaTable.id, mediaId));
     res.json({ ok: true });
@@ -254,10 +195,66 @@ router.delete("/admin/albums/:albumId/media/:mediaId", requireAdmin, async (req,
   }
 });
 
-// ─── Leads (admin view) ───────────────────────────────────────────────────────
+// ─── Testimonials ─────────────────────────────────────────────────────────────
 
-import { leadsTable, contactsTable } from "@workspace/db";
-import { desc } from "drizzle-orm";
+const testimonialSchema = z.object({
+  text: z.string().min(1),
+  author: z.string().min(1),
+  role: z.string().min(1),
+  initials: z.string().min(1).max(3),
+  active: z.boolean().optional(),
+  orderIndex: z.number().int().optional(),
+});
+
+router.get("/admin/testimonials", requireAdmin, async (req, res) => {
+  try {
+    const rows = await db.select().from(testimonialsTable).orderBy(asc(testimonialsTable.orderIndex));
+    res.json(rows);
+  } catch (err) {
+    req.log.error({ err }, "Failed to fetch testimonials");
+    res.status(500).json({ error: "Erro interno" });
+  }
+});
+
+router.post("/admin/testimonials", requireAdmin, async (req, res) => {
+  const parsed = testimonialSchema.safeParse(req.body);
+  if (!parsed.success) { res.status(400).json({ error: "Dados inválidos" }); return; }
+  try {
+    const count = await db.select().from(testimonialsTable);
+    const [row] = await db.insert(testimonialsTable).values({ ...parsed.data, orderIndex: parsed.data.orderIndex ?? count.length }).returning();
+    res.status(201).json(row);
+  } catch (err) {
+    req.log.error({ err }, "Failed to create testimonial");
+    res.status(500).json({ error: "Erro interno" });
+  }
+});
+
+router.put("/admin/testimonials/:id", requireAdmin, async (req, res) => {
+  const id = Number(req.params["id"]);
+  const parsed = testimonialSchema.partial().safeParse(req.body);
+  if (!parsed.success || isNaN(id)) { res.status(400).json({ error: "Dados inválidos" }); return; }
+  try {
+    const [row] = await db.update(testimonialsTable).set(parsed.data).where(eq(testimonialsTable.id, id)).returning();
+    res.json(row);
+  } catch (err) {
+    req.log.error({ err }, "Failed to update testimonial");
+    res.status(500).json({ error: "Erro interno" });
+  }
+});
+
+router.delete("/admin/testimonials/:id", requireAdmin, async (req, res) => {
+  const id = Number(req.params["id"]);
+  if (isNaN(id)) { res.status(400).json({ error: "ID inválido" }); return; }
+  try {
+    await db.delete(testimonialsTable).where(eq(testimonialsTable.id, id));
+    res.json({ ok: true });
+  } catch (err) {
+    req.log.error({ err }, "Failed to delete testimonial");
+    res.status(500).json({ error: "Erro interno" });
+  }
+});
+
+// ─── Leads ────────────────────────────────────────────────────────────────────
 
 router.get("/admin/leads", requireAdmin, async (req, res) => {
   try {
@@ -268,6 +265,8 @@ router.get("/admin/leads", requireAdmin, async (req, res) => {
     res.status(500).json({ error: "Erro interno" });
   }
 });
+
+// ─── Contacts ─────────────────────────────────────────────────────────────────
 
 router.get("/admin/contacts", requireAdmin, async (req, res) => {
   try {

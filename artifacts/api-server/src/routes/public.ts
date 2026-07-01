@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { db } from "@workspace/db";
-import { albumsTable, albumMediaTable, heroImagesTable } from "@workspace/db";
+import { albumsTable, albumMediaTable, heroImagesTable, testimonialsTable } from "@workspace/db";
 import { eq, asc } from "drizzle-orm";
 
 const router = Router();
@@ -67,6 +67,21 @@ router.get("/albums/:id", async (req, res) => {
     res.json({ ...album, media });
   } catch (err) {
     req.log.error({ err }, "Failed to fetch album");
+    res.status(500).json({ error: "Erro interno" });
+  }
+});
+
+// Public: active testimonials
+router.get("/testimonials", async (req, res) => {
+  try {
+    const rows = await db
+      .select()
+      .from(testimonialsTable)
+      .where(eq(testimonialsTable.active, true))
+      .orderBy(asc(testimonialsTable.orderIndex));
+    res.json(rows);
+  } catch (err) {
+    req.log.error({ err }, "Failed to fetch testimonials");
     res.status(500).json({ error: "Erro interno" });
   }
 });

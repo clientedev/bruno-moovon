@@ -37,3 +37,17 @@ export const heroImagesTable = pgTable("hero_images", {
 
 export type HeroImage = typeof heroImagesTable.$inferSelect;
 export type InsertHeroImage = typeof heroImagesTable.$inferInsert;
+
+export const testimonialsTable = pgTable("testimonials", {
+  id: serial("id").primaryKey(),
+  text: text("text").notNull(),
+  author: text("author").notNull(),
+  role: text("role").notNull(),
+  initials: text("initials").notNull(),
+  active: boolean("active").default(true).notNull(),
+  orderIndex: integer("order_index").default(0).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type Testimonial = typeof testimonialsTable.$inferSelect;
+export type InsertTestimonial = typeof testimonialsTable.$inferInsert;
