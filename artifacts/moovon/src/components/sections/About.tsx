@@ -145,13 +145,13 @@ export function About() {
             <span>moovon.consulting@gmail.com</span>
           </a>
           <a
-            href="https://instagram.com/moovonconsulting"
+            href="https://instagram.com/brunosaraiva.c"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
           >
             <Instagram className="w-4 h-4 text-primary shrink-0" />
-            <span>@moovonconsulting</span>
+            <span>@brunosaraiva.c</span>
           </a>
           <a
             href="https://www.linkedin.com/in/brunosaraivadecastro/"

@@ -22,7 +22,7 @@ export function Footer() {
                 <Phone className="w-4 h-4" />
                 <span className="sr-only">WhatsApp</span>
               </a>
-              <a href="https://instagram.com/moovonconsulting" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors text-white">
+              <a href="https://instagram.com/brunosaraiva.c" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors text-white">
                 <Instagram className="w-4 h-4" />
                 <span className="sr-only">Instagram</span>
               </a>

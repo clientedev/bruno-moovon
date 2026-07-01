@@ -112,8 +112,8 @@ export function Contact() {
                 </div>
                 <div>
                   <h4 className="font-bold text-foreground mb-1">Instagram</h4>
-                  <a href="https://instagram.com/moovonconsulting" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                    @moovonconsulting
+                  <a href="https://instagram.com/brunosaraiva.c" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                    @brunosaraiva.c
                   </a>
                 </div>
               </div>
