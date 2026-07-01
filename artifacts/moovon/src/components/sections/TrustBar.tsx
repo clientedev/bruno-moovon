@@ -31,11 +31,6 @@ export function TrustBar() {
     { label: "Capital Segurado", value: 1, suffix: " Bi+", prefix: "R$ " },
   ];
 
-  const credentials = [
-    { title: "MDRT", name: "Million Dollar Round Table", desc: "Selo máximo do mercado de seguros mundial", img: "/mdrt-logo.png", invert: true },
-    { title: "ATCB", name: "Top Corretores do Brasil", desc: "Membro da maior associação de elite em seguros", img: "/atcb-selo.png", invert: false },
-    { title: "SUSEP", name: "Credenciado", desc: "Corretor regulamentado e certificado", img: null, invert: false },
-  ];
 
   return (
     <section className="py-16 bg-secondary dark:bg-background border-b border-border/10">
@@ -63,36 +58,6 @@ export function TrustBar() {
           ))}
         </div>
 
-        {/* Credential badges */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-          {credentials.map((cred, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 + i * 0.1 }}
-              className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm"
-            >
-              {cred.img ? (
-                <img
-                  src={cred.img}
-                  alt={cred.title}
-                  className={`h-12 w-12 object-contain flex-shrink-0 ${cred.invert ? "brightness-0 invert opacity-90" : "opacity-90"}`}
-                />
-              ) : (
-                <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <span className="text-primary text-xs font-bold">{cred.title}</span>
-                </div>
-              )}
-              <div className="min-w-0">
-                <p className="text-white font-bold text-sm">{cred.title}</p>
-                <p className="text-gray-300 text-xs font-medium leading-tight">{cred.name}</p>
-                <p className="text-gray-500 text-xs leading-tight mt-0.5">{cred.desc}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );
