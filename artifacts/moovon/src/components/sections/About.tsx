@@ -65,7 +65,7 @@ export function About() {
             </ul>
 
             <div className="flex items-center gap-6 pt-6 border-t border-border">
-              <img src="/bruno-saraiva.jpg" alt="Bruno Saraiva" className="w-16 h-16 rounded-full object-cover object-top" />
+              <img src="/bruno-perfil.jpg" alt="Bruno Saraiva" className="w-16 h-16 rounded-full object-cover object-top" />
               <div>
                 <p className="font-serif font-bold text-xl text-foreground">Bruno Saraiva de Castro</p>
                 <p className="text-sm text-muted-foreground">Fundador & CEO, BSeguros</p>
