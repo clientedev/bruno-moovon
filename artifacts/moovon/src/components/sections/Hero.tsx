@@ -74,7 +74,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white mb-6"
+            className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white mb-5"
           >
             Proteja quem você ama. <br />
             <span className="text-primary-foreground/90 font-light italic">Planeje o futuro</span> com segurança.
