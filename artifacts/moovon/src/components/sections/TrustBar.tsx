@@ -79,7 +79,7 @@ export function TrustBar() {
               <img
                 src="/atcb-selo.png"
                 alt="Selo ATCB"
-                className="w-24 h-24 object-contain flex-shrink-0 drop-shadow-lg"
+                className="w-32 h-32 object-contain flex-shrink-0 drop-shadow-lg"
               />
               <div>
                 <h3 className="text-3xl font-serif font-bold text-white mb-1">ATCB</h3>
