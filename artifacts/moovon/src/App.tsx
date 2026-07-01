@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import NotFound from "@/pages/not-found";
 import { Home } from "@/pages/Home";
 import { Admin } from "@/pages/Admin";
+import { ServicePage } from "@/pages/ServicePage";
 
 const queryClient = new QueryClient();
 
@@ -14,6 +15,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/admin" component={Admin} />
+      <Route path="/solucao/:slug" component={ServicePage} />
       <Route component={NotFound} />
     </Switch>
   );

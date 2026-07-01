@@ -27,10 +27,10 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-border shadow-sm py-3"
-          : "bg-transparent py-5"
+          ? "bg-background/90 backdrop-blur-md border-border shadow-sm py-3"
+          : "bg-transparent border-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
@@ -38,7 +38,11 @@ export function Header() {
           <img
             src="/logo-bruno-saraiva.png"
             alt="Bruno Saraiva"
-            className={`h-10 w-auto transition-all duration-300 ${isScrolled ? "brightness-0 dark:brightness-100 invert dark:invert-0" : "brightness-0 invert"}`}
+            className={`h-10 w-auto transition-all duration-300 ${
+              isScrolled
+                ? "brightness-0 dark:brightness-0 dark:invert"
+                : "brightness-0 invert"
+            }`}
           />
         </a>
 
@@ -49,14 +53,18 @@ export function Header() {
               <li key={link.name}>
                 <a
                   href={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className={`text-sm font-medium transition-colors ${
+                    isScrolled
+                      ? "text-foreground/70 hover:text-foreground"
+                      : "text-white/80 hover:text-white"
+                  }`}
                 >
                   {link.name}
                 </a>
               </li>
             ))}
           </ul>
-          <div className="flex items-center gap-4 border-l border-border pl-4">
+          <div className={`flex items-center gap-4 border-l pl-4 ${isScrolled ? "border-border" : "border-white/20"}`}>
             <ThemeToggle />
             <Button asChild className="rounded-full px-6 bg-primary hover:bg-primary/90 text-primary-foreground">
               <a href="#contato">Solicitar Consultoria</a>
@@ -71,7 +79,7 @@ export function Header() {
             variant="ghost"
             size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-foreground"
+            className={isScrolled ? "text-foreground" : "text-white hover:text-white hover:bg-white/10"}
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
