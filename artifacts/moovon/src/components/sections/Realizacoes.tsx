@@ -247,10 +247,13 @@ export function Realizacoes() {
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary" />
                 )}
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover:from-black/90" />
+                {/* Base film — always visible, ensures text is readable on light images */}
+                <div className="absolute inset-0 bg-black/30 transition-colors duration-300 group-hover:bg-black/50" />
+                {/* Bottom gradient — deepens on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-300 group-hover:from-black/95 group-hover:via-black/40" />
 
-                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="font-serif text-white text-xl font-bold mb-1">{album.name}</h3>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="font-serif text-white text-xl font-bold mb-1 drop-shadow-md">{album.name}</h3>
                   {album.description && (
                     <p className="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 leading-relaxed">
                       {album.description}
