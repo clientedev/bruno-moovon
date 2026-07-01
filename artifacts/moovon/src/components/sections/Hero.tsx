@@ -86,7 +86,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl font-light leading-relaxed"
           >
-            Há mais de 7 anos ajudando famílias, empresários e profissionais a proteger seu patrimônio e construir um futuro financeiro seguro.
+            Há mais de 10 anos ajudando famílias, empresários e profissionais a proteger seu patrimônio e construir um futuro financeiro seguro.
           </motion.p>
 
           <motion.div
@@ -110,9 +110,9 @@ export function Hero() {
             className="grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-white/10 pt-8"
           >
             {[
-              "+7 anos de experiência",
-              "Atendimento nacional",
-              "Especialista em proteção"
+              "+10 anos de experiência",
+              "+1.000 clientes ativos",
+              "+R$ 1 bilhão em capital segurado"
             ].map((stat, i) => (
               <div key={i} className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary" />

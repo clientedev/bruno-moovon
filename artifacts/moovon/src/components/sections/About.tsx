@@ -24,7 +24,7 @@ export function About() {
             {/* Decorative element */}
             <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-primary rounded-3xl z-0" />
             <div className="absolute top-12 -left-8 bg-card shadow-xl rounded-2xl p-6 border border-border/50 backdrop-blur-md z-20">
-              <p className="font-serif text-3xl font-bold text-foreground">7+</p>
+              <p className="font-serif text-3xl font-bold text-foreground">10+</p>
               <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Anos de Experiência</p>
             </div>
           </motion.div>
@@ -42,7 +42,7 @@ export function About() {
             
             <div className="space-y-6 text-muted-foreground text-lg font-light leading-relaxed mb-8">
               <p>
-                Como fundador da MOOVON Consulting, dediquei os últimos 7 anos a uma única missão: proteger famílias, empresários e profissionais de imprevistos financeiros que podem desestabilizar uma vida inteira de trabalho.
+                Como fundador da BSeguros, dediquei os últimos 10 anos a uma única missão: proteger famílias, empresários e profissionais de imprevistos financeiros que podem desestabilizar uma vida inteira de trabalho.
               </p>
               <p>
                 Acredito que o seguro de vida não é um custo, mas sim o pilar fundamental de qualquer planejamento patrimonial sério. Minha abordagem é consultiva e personalizada, entendendo profundamente a sua realidade antes de propor qualquer solução.
@@ -67,7 +67,7 @@ export function About() {
               <img src="/bruno-saraiva.jpg" alt="Bruno Saraiva" className="w-16 h-16 rounded-full object-cover object-top" />
               <div>
                 <p className="font-serif font-bold text-xl text-foreground">Bruno Saraiva de Castro</p>
-                <p className="text-sm text-muted-foreground">Fundador & CEO, MOOVON Consulting</p>
+                <p className="text-sm text-muted-foreground">Fundador & CEO, BSeguros</p>
               </div>
             </div>
 

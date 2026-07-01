@@ -36,9 +36,9 @@ export function Header() {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <a href="/" className="flex items-center group">
           <img
-            src="/logo-bruno-saraiva.png"
-            alt="Bruno Saraiva"
-            className={`h-10 w-auto transition-all duration-300 ${
+            src="/logo-bseguros.png"
+            alt="BSeguros"
+            className={`h-14 w-auto transition-all duration-300 ${
               isScrolled
                 ? "brightness-0 dark:brightness-0 dark:invert"
                 : "brightness-0 invert"

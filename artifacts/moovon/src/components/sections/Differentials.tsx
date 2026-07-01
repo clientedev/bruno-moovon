@@ -23,7 +23,7 @@ export function Differentials() {
             viewport={{ once: true }}
             className="max-w-xl"
           >
-            <h2 className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">Por que escolher a MOOVON?</h2>
+            <h2 className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">Por que escolher a BSeguros?</h2>
             <h3 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6">
               Excelência e exclusividade em cada detalhe.
             </h3>

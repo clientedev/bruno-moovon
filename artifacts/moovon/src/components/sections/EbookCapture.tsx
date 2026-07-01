@@ -58,12 +58,23 @@ export function EbookCapture() {
                 </div>
 
                 <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Mentoria Renda Vitalícia
+                  Desvendando o Planejamento Sucessório
                 </h3>
 
-                <p className="text-muted-foreground font-light leading-relaxed mb-8">
-                  Acesse o programa completo de mentoria e transforme sua relação com o dinheiro. Conteúdo exclusivo, estratégias comprovadas e o acompanhamento direto de Bruno Saraiva para construir sua renda vitalícia.
+                <p className="text-muted-foreground font-light leading-relaxed mb-4">
+                  Material exclusivo para:
                 </p>
+
+                <ul className="text-left space-y-3 mb-8">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <span className="text-foreground text-sm font-medium">Clientes de alto patrimônio que desejam entender melhor planejamento sucessório e reforma tributária.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <span className="text-foreground text-sm font-medium">Corretores de seguros que desejam aprofundar seus conhecimentos e evoluir profissionalmente.</span>
+                  </li>
+                </ul>
 
                 <div className="flex flex-col gap-3">
                   <Button
@@ -72,16 +83,16 @@ export function EbookCapture() {
                     className="w-full rounded-full gap-2 text-base font-semibold"
                   >
                     <a
-                      href="https://mentoriarendavitalicia.com.br/"
+                      href="https://brunosaraiva-c.hotmart.host/desvendendo-o-planejamento-sucessorio-ef2a33f4-de34-472f-92f5-7481f5416bd4"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Acessar o E-book
+                      Acessar E-book
                       <ExternalLink className="w-4 h-4" />
                     </a>
                   </Button>
                   <p className="text-xs text-muted-foreground">
-                    Você será redirecionado para o site oficial da mentoria
+                    Você será redirecionado para a página oficial do E-book
                   </p>
                 </div>
               </motion.div>

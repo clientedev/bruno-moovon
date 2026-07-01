@@ -13,17 +13,17 @@ export function Mentoria() {
             viewport={{ once: true }}
           >
             <span className="inline-block py-1 px-3 rounded-full bg-primary/20 text-primary text-xs font-semibold tracking-wider uppercase mb-6 border border-primary/30">
-              Serviço Exclusivo
+              Exclusivo para Corretores
             </span>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Aprenda a tomar decisões financeiras mais inteligentes.
+              Mentoria exclusiva para corretores de seguros de vida.
             </h2>
             <p className="text-lg text-gray-300 font-light mb-8 leading-relaxed max-w-xl">
-              Nossa mentoria individual vai além do seguro. Ajudamos profissionais e empresários a estruturar um planejamento financeiro sólido, criar estratégias de proteção patrimonial e construir um caminho seguro para a independência financeira.
+              Uma mentoria desenvolvida especialmente para corretores de seguros de vida que desejam elevar seus resultados, dominar o planejamento sucessório e construir uma carteira de clientes de alto padrão.
             </p>
             
             <Button size="lg" className="rounded-full px-8 text-base bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
-              <a href="https://wa.me/5511966088872" target="_blank" rel="noopener noreferrer">
+              <a href="https://mentoriarendavitalicia.com.br/" target="_blank" rel="noopener noreferrer">
                 Quero saber mais <ArrowRight className="ml-2 w-4 h-4" />
               </a>
             </Button>

@@ -1,0 +1,70 @@
+ALTERAÇÕES NO SITE (NÃO CRIAR NOVAS SEÇÕES)
+
+Faça somente as alterações listadas abaixo no site existente.
+
+IMPORTANTE:
+
+NÃO altere o layout, estrutura, design, animações, responsividade ou identidade visual do site.
+NÃO crie novas páginas, novas seções ou novos componentes.
+NÃO adicione conteúdos extras.
+NÃO reescreva textos que não foram mencionados.
+Apenas substitua ou atualize os elementos especificados.
+1. Alteração da marca
+
+Substitua toda ocorrência de:
+
+MOOVON
+MOOVON Consulting
+
+por:
+
+BSeguros
+
+A partir desta alteração, a marca principal do site deve ser BSeguros, pois este é o nome fantasia da corretora.
+
+Também substitua a logo atual pela mesma logo porem recorte o texto com o nome bruno saraiva dela e aumente um pouco o tamnho da mesma.
+
+2. Atualizar os números institucionais
+
+Na seção onde são apresentados os diferenciais da empresa, substitua o conteúdo atual pelos seguintes indicadores:
+
++10 anos de experiência
++1.000 clientes ativos
++R$ 1 bilhão em capital segurado
+
+Apenas substitua os dados existentes.
+
+Não criar uma nova seção para isso.
+
+3. Corrigir o botão do E-book
+
+O botão "Acessar E-book" atualmente está apontando para o link errado.
+
+Corrija para que ele direcione para o link da Hotmart referente ao E-book.
+
+Importante:
+Este botão NÃO deve direcionar para a mentoria.
+
+4. Separar corretamente E-book e Mentoria
+
+O site atualmente mistura os dois produtos.
+
+Corrija para que:
+
+E-book
+
+O E-book seja apresentado como um material destinado para: https://brunosaraiva-c.hotmart.host/desvendendo-o-planejamento-sucessorio-ef2a33f4-de34-472f-92f5-7481f5416bd4
+
+Clientes de alto patrimônio que desejam entender melhor planejamento sucessório e reforma tributária.
+Corretores de seguros que desejam aprofundar seus conhecimentos e evoluir profissionalmente.
+Mentoria
+
+A Mentoria deve permanecer como um produto separado.
+
+Ela deve direcionar para:
+
+https://mentoriarendavitalicia.com.br/
+
+A descrição deve informar que é uma mentoria exclusiva para corretores de seguros de vida.
+
+Não misturar os dois produtos.

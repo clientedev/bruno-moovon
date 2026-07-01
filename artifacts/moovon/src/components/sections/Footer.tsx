@@ -9,13 +9,13 @@ export function Footer() {
           <div className="lg:col-span-1">
             <div className="mb-6">
               <img
-                src="/logo-bruno-saraiva.png"
-                alt="Bruno Saraiva"
+                src="/logo-bseguros.png"
+                alt="BSeguros"
                 className="h-12 w-auto"
               />
             </div>
             <p className="text-gray-400 font-light leading-relaxed mb-6 text-sm">
-              Protegendo famílias, empresários e patrimônios com excelência e exclusividade há mais de 7 anos.
+              Protegendo famílias, empresários e patrimônios com excelência e exclusividade há mais de 10 anos.
             </p>
             <div className="flex gap-4">
               <a href="https://wa.me/5511966088872" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors text-white">
@@ -77,7 +77,7 @@ export function Footer() {
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-500 text-xs text-center md:text-left">
-            &copy; {new Date().getFullYear()} MOOVON Consulting Corretora de Seguros de Vida. Todos os direitos reservados.<br className="hidden md:block" />
+            &copy; {new Date().getFullYear()} BSeguros Corretora de Seguros de Vida. Todos os direitos reservados.<br className="hidden md:block" />
             CNPJ: 27.757.003/0001-20
           </p>
           <div className="flex gap-4">
