@@ -1,6 +1,5 @@
 [build]
 builder = "nixpacks"
-buildCommand = "pnpm install && BASE_PATH=/ PORT=3000 pnpm --filter @workspace/moovon build && pnpm --filter @workspace/api-server build"
 
 [deploy]
 startCommand = "node --enable-source-maps artifacts/api-server/dist/index.mjs"
