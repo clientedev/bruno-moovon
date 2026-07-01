@@ -21,7 +21,7 @@ interface Testimonial {
 }
 
 const FALLBACK: Testimonial[] = [
-  { id: 1, text: "Graças à MOOVON, finalmente entendi como proteger minha família e meu patrimônio. Bruno é um profissional excepcional.", author: "Carlos Eduardo M.", role: "Empresário", initials: "CE", active: true, orderIndex: 0 },
+  { id: 1, text: "Graças à BSeguros, finalmente entendi como proteger minha família e meu patrimônio. Bruno é um profissional excepcional.", author: "Carlos Eduardo M.", role: "Empresário", initials: "CE", active: true, orderIndex: 0 },
   { id: 2, text: "A consultoria personalizada foi fundamental para o planejamento sucessório da nossa empresa. Recomendo sem hesitar.", author: "Dra. Ana Paula S.", role: "Médica", initials: "AP", active: true, orderIndex: 1 },
   { id: 3, text: "Profissionalismo e atenção em cada detalhe. Me sinto seguro sabendo que minha família está protegida.", author: "Roberto T.", role: "Advogado", initials: "RT", active: true, orderIndex: 2 },
   { id: 4, text: "O Bruno me ajudou a entender que seguro de vida é investimento, não custo. Transformou minha visão financeira.", author: "Marcos V.", role: "Executivo", initials: "MV", active: true, orderIndex: 3 },
