@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Phone, Mail, Instagram, Linkedin } from "lucide-react";
 
 export function About() {
   return (
@@ -68,11 +68,70 @@ export function About() {
               <div>
                 <p className="font-serif font-bold text-xl text-foreground">Bruno Saraiva de Castro</p>
                 <p className="text-sm text-muted-foreground">Fundador & CEO, BSeguros</p>
+                {/* Certification seals — discreet, right below name/title */}
+                <div className="flex items-center gap-4 mt-2">
+                  <img
+                    src="/mdrt-logo.png"
+                    alt="MDRT"
+                    className="h-7 w-auto object-contain opacity-70 dark:opacity-50 dark:invert"
+                  />
+                  <div className="w-px h-5 bg-border" />
+                  <img
+                    src="/atcb-selo.png"
+                    alt="ATCB"
+                    className="h-7 w-auto object-contain opacity-70"
+                  />
+                </div>
               </div>
             </div>
 
           </motion.div>
         </div>
+
+        {/* Thin contact strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-14 pt-7 border-t border-border/50 flex flex-wrap items-center gap-x-8 gap-y-4"
+        >
+          <a
+            href="https://wa.me/5511966088872"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
+          >
+            <Phone className="w-4 h-4 text-primary shrink-0" />
+            <span>(11) 96608-8872</span>
+          </a>
+          <a
+            href="mailto:moovon.consulting@gmail.com"
+            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
+          >
+            <Mail className="w-4 h-4 text-primary shrink-0" />
+            <span>moovon.consulting@gmail.com</span>
+          </a>
+          <a
+            href="https://instagram.com/moovonconsulting"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
+          >
+            <Instagram className="w-4 h-4 text-primary shrink-0" />
+            <span>@moovonconsulting</span>
+          </a>
+          <a
+            href="https://linkedin.com/in/brunosaraivadeseguros"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
+          >
+            <Linkedin className="w-4 h-4 text-primary shrink-0" />
+            <span>Bruno Saraiva</span>
+          </a>
+        </motion.div>
+
       </div>
     </section>
   );

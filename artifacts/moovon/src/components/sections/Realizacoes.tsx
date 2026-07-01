@@ -203,7 +203,7 @@ export function Realizacoes() {
             Realizações
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Premiações, eventos e conquistas que marcam a trajetória de dedicação e excelência da MOOVON.
+            Premiações, eventos e conquistas que marcam a trajetória de dedicação e excelência da BSeguros.
           </p>
         </motion.div>
 
