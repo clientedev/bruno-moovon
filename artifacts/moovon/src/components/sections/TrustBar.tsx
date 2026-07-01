@@ -54,16 +54,17 @@ export function TrustBar() {
             className="relative flex flex-col p-8 rounded-2xl bg-gradient-to-br from-[#1A1A1A] to-[#252525] border border-[#C9A84C]/30 shadow-lg overflow-hidden group"
           >
             <div className="absolute inset-0 bg-[#C9A84C]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute top-0 right-0 p-6 opacity-10">
-              <Star className="w-24 h-24 text-[#C9A84C]" />
-            </div>
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-4">
-                <Star className="w-8 h-8 text-[#C9A84C]" fill="currentColor" />
-                <h3 className="text-3xl font-serif font-bold text-[#C9A84C]">MDRT</h3>
+            <div className="relative z-10 flex items-center gap-6">
+              <img
+                src="/mdrt-logo.png"
+                alt="MDRT Logo"
+                className="w-24 h-24 object-contain flex-shrink-0 drop-shadow-lg"
+              />
+              <div>
+                <h3 className="text-3xl font-serif font-bold text-[#C9A84C] mb-1">MDRT</h3>
+                <p className="text-white font-medium text-lg mb-2">Million Dollar Round Table</p>
+                <p className="text-gray-400 text-sm leading-relaxed">Selo máximo do mercado de seguros, conquista de poucos especialistas no mundo.</p>
               </div>
-              <p className="text-white font-medium text-lg mb-2">Million Dollar Round Table</p>
-              <p className="text-gray-400 text-sm leading-relaxed">Selo máximo do mercado de seguros, conquista de poucos especialistas no mundo.</p>
             </div>
           </motion.div>
 
@@ -74,16 +75,17 @@ export function TrustBar() {
             transition={{ delay: 0.2 }}
             className="relative flex flex-col p-8 rounded-2xl bg-white/5 border border-white/10 shadow-lg overflow-hidden group"
           >
-            <div className="absolute top-0 right-0 p-6 opacity-5">
-              <Award className="w-24 h-24 text-white" />
-            </div>
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-4">
-                <Award className="w-8 h-8 text-primary" />
-                <h3 className="text-3xl font-serif font-bold text-white">ATCB</h3>
+            <div className="relative z-10 flex items-center gap-6">
+              <img
+                src="/atcb-selo.png"
+                alt="Selo ATCB"
+                className="w-24 h-24 object-contain flex-shrink-0 drop-shadow-lg"
+              />
+              <div>
+                <h3 className="text-3xl font-serif font-bold text-white mb-1">ATCB</h3>
+                <p className="text-white font-medium text-lg mb-2">Associação Top Corretores do Brasil</p>
+                <p className="text-gray-400 text-sm leading-relaxed">Membro ativo da maior associação de elite do mercado de seguros do Brasil.</p>
               </div>
-              <p className="text-white font-medium text-lg mb-2">Associação Top Corretores do Brasil</p>
-              <p className="text-gray-400 text-sm leading-relaxed">Membro ativo da maior associação de elite do mercado de seguros do Brasil.</p>
             </div>
           </motion.div>
         </div>
