@@ -24,10 +24,6 @@ export function About() {
               />
             </div>
             <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-primary rounded-3xl z-0" />
-            <div className="absolute top-12 -left-8 bg-card shadow-xl rounded-2xl p-6 border border-border/50 backdrop-blur-md z-20">
-              <p className="font-serif text-3xl font-bold text-foreground">10+</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Anos de Experiência</p>
-            </div>
           </motion.div>
 
           <motion.div
