@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Phone, Mail, Instagram, Linkedin } from "lucide-react";
+import { CheckCircle2, Mail, Instagram, Linkedin } from "lucide-react";
 
 export function About() {
   return (
@@ -125,20 +125,11 @@ export function About() {
           className="mt-10 pt-7 border-t border-border/50 flex flex-wrap items-center justify-center gap-x-8 gap-y-4"
         >
           <a
-            href="https://wa.me/5511966088872"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
-          >
-            <Phone className="w-4 h-4 text-primary shrink-0" />
-            <span>(11) 96608-8872</span>
-          </a>
-          <a
-            href="mailto:moovon.consulting@gmail.com"
+            href="mailto:atendimento@bseguros.com.br"
             className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
           >
             <Mail className="w-4 h-4 text-primary shrink-0" />
-            <span>moovon.consulting@gmail.com</span>
+            <span>atendimento@bseguros.com.br</span>
           </a>
           <a
             href="https://instagram.com/brunosaraiva.c"

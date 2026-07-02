@@ -1,4 +1,4 @@
-import { Instagram, Phone, Mail } from "lucide-react";
+import { Instagram, Mail } from "lucide-react";
 
 export function Footer() {
   return (
@@ -18,15 +18,11 @@ export function Footer() {
               Protegendo famílias, empresários e patrimônios com excelência e exclusividade há mais de 10 anos.
             </p>
             <div className="flex gap-4">
-              <a href="https://wa.me/5511966088872" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors text-white">
-                <Phone className="w-4 h-4" />
-                <span className="sr-only">WhatsApp</span>
-              </a>
               <a href="https://instagram.com/brunosaraiva.c" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors text-white">
                 <Instagram className="w-4 h-4" />
                 <span className="sr-only">Instagram</span>
               </a>
-              <a href="mailto:moovon.consulting@gmail.com" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors text-white">
+              <a href="mailto:atendimento@bseguros.com.br" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors text-white">
                 <Mail className="w-4 h-4" />
                 <span className="sr-only">E-mail</span>
               </a>
@@ -59,12 +55,8 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-6">Contato</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-primary shrink-0" />
-                <span className="text-gray-400 text-sm">(11) 96608-8872</span>
-              </li>
-              <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
-                <span className="text-gray-400 text-sm">moovon.consulting@gmail.com</span>
+                <span className="text-gray-400 text-sm">atendimento@bseguros.com.br</span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0" />

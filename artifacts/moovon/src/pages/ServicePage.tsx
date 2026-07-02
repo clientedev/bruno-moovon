@@ -146,13 +146,8 @@ export function ServicePage() {
                 <p className="text-muted-foreground text-sm mb-6 font-light leading-relaxed">
                   Agende uma consulta gratuita e entenda como esta solução pode proteger o seu patrimônio.
                 </p>
-                <Button asChild className="w-full rounded-full bg-primary hover:bg-primary/90 text-primary-foreground mb-3">
+                <Button asChild className="w-full rounded-full bg-primary hover:bg-primary/90 text-primary-foreground">
                   <a href="/#contato">Falar com Bruno Saraiva</a>
-                </Button>
-                <Button asChild variant="outline" className="w-full rounded-full">
-                  <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">
-                    Falar no WhatsApp
-                  </a>
                 </Button>
               </div>
 

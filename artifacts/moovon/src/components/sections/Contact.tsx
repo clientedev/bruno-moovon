@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Mail, Phone, Instagram, MapPin } from "lucide-react";
+import { Mail, Instagram, MapPin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -84,24 +84,12 @@ export function Contact() {
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 text-primary">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-foreground mb-1">WhatsApp / Telefone</h4>
-                  <a href="https://wa.me/5511966088872" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                    (11) 96608-8872
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="font-bold text-foreground mb-1">E-mail</h4>
-                  <a href="mailto:moovon.consulting@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    moovon.consulting@gmail.com
+                  <a href="mailto:atendimento@bseguros.com.br" className="text-muted-foreground hover:text-primary transition-colors">
+                    atendimento@bseguros.com.br
                   </a>
                 </div>
               </div>
@@ -162,7 +150,7 @@ export function Contact() {
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Telefone / WhatsApp</FormLabel>
+                        <FormLabel>Telefone</FormLabel>
                         <FormControl>
                           <Input placeholder="(11) 99999-9999" {...field} className="bg-background" />
                         </FormControl>

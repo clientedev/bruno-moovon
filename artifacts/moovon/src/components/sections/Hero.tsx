@@ -113,9 +113,6 @@ export function Hero() {
             <Button size="lg" className="rounded-full px-8 text-base bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
               <a href="#contato">Solicitar Consultoria</a>
             </Button>
-            <Button size="lg" variant="outline" className="rounded-full px-8 text-base border-white/30 text-white hover:bg-white hover:text-secondary bg-transparent backdrop-blur-sm" asChild>
-              <a href="https://wa.me/5511966088872" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
-            </Button>
           </motion.div>
 
         </div>
