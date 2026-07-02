@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import * as XLSX from "xlsx";
 import { apiFetch, fileToBase64 } from "@/lib/api";
+import { solutionIconMap, solutionIconNames, getSolutionIcon } from "@/lib/solutionIcons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,6 +23,9 @@ import {
   ArrowLeft,
   Home,
   Star,
+  Shield,
+  ChevronUp,
+  ChevronDown,
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -48,6 +53,19 @@ interface HeroImage {
   label?: string;
   orderIndex: number;
   active: boolean;
+}
+
+interface Solution {
+  id: number;
+  slug: string;
+  icon: string;
+  title: string;
+  desc: string;
+  fullDesc: string;
+  image: string;
+  benefits: string[];
+  active: boolean;
+  orderIndex: number;
 }
 
 interface Testimonial {
@@ -473,6 +491,282 @@ function AlbumMediaManager({ album, onBack }: { album: Album; onBack: () => void
   );
 }
 
+// ─── Solutions Manager ────────────────────────────────────────────────────────
+
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+const emptySolutionForm = {
+  slug: "",
+  icon: "Shield",
+  title: "",
+  desc: "",
+  fullDesc: "",
+  image: "",
+  benefits: [""],
+};
+
+function SolutionsManager() {
+  const [solutions, setSolutions] = useState<Solution[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [editItem, setEditItem] = useState<Solution | null>(null);
+  const [form, setForm] = useState(emptySolutionForm);
+  const [slugTouched, setSlugTouched] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const { toast } = useToast();
+
+  async function load() {
+    const res = await apiFetch("/admin/solutions");
+    if (res.ok) setSolutions(await res.json());
+    setLoading(false);
+  }
+  useEffect(() => { load(); }, []);
+
+  function openNew() {
+    setEditItem(null);
+    setForm(emptySolutionForm);
+    setSlugTouched(false);
+    setShowForm(true);
+  }
+
+  function openEdit(s: Solution) {
+    setEditItem(s);
+    setForm({
+      slug: s.slug,
+      icon: s.icon,
+      title: s.title,
+      desc: s.desc,
+      fullDesc: s.fullDesc,
+      image: s.image,
+      benefits: s.benefits.length > 0 ? s.benefits : [""],
+    });
+    setSlugTouched(true);
+    setShowForm(true);
+  }
+
+  function handleTitleChange(val: string) {
+    setForm((f) => ({ ...f, title: val, slug: slugTouched ? f.slug : slugify(val) }));
+  }
+
+  function updateBenefit(i: number, val: string) {
+    setForm((f) => ({ ...f, benefits: f.benefits.map((b, idx) => (idx === i ? val : b)) }));
+  }
+
+  function addBenefit() {
+    setForm((f) => ({ ...f, benefits: [...f.benefits, ""] }));
+  }
+
+  function removeBenefit(i: number) {
+    setForm((f) => ({ ...f, benefits: f.benefits.filter((_, idx) => idx !== i) }));
+  }
+
+  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const base64 = await fileToBase64(file);
+      setForm((f) => ({ ...f, image: base64 }));
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  async function handleSave() {
+    const benefits = form.benefits.map((b) => b.trim()).filter(Boolean);
+    if (!form.title || !form.desc || !form.fullDesc || !form.image || !form.slug || benefits.length === 0) {
+      toast({ title: "Preencha todos os campos obrigatórios (incluindo ao menos 1 benefício)", variant: "destructive" });
+      return;
+    }
+    const body = { ...form, slug: slugify(form.slug), benefits };
+    const res = editItem
+      ? await apiFetch(`/admin/solutions/${editItem.id}`, { method: "PUT", body: JSON.stringify(body) })
+      : await apiFetch("/admin/solutions", { method: "POST", body: JSON.stringify(body) });
+    if (res.ok) {
+      toast({ title: editItem ? "Solução atualizada!" : "Solução adicionada!" });
+      setShowForm(false);
+      load();
+    } else {
+      const data = await res.json().catch(() => ({}));
+      toast({ title: data.error ?? "Erro ao salvar", variant: "destructive" });
+    }
+  }
+
+  async function toggleActive(s: Solution) {
+    const res = await apiFetch(`/admin/solutions/${s.id}`, { method: "PUT", body: JSON.stringify({ active: !s.active }) });
+    if (res.ok) load();
+  }
+
+  async function deleteItem(id: number) {
+    if (!confirm("Remover esta solução? A página dela deixará de existir no site.")) return;
+    const res = await apiFetch(`/admin/solutions/${id}`, { method: "DELETE" });
+    if (res.ok) { toast({ title: "Solução removida" }); load(); }
+  }
+
+  async function move(index: number, dir: -1 | 1) {
+    const target = index + dir;
+    if (target < 0 || target >= solutions.length) return;
+    const a = solutions[index]!;
+    const b = solutions[target]!;
+    await Promise.all([
+      apiFetch(`/admin/solutions/${a.id}`, { method: "PUT", body: JSON.stringify({ orderIndex: b.orderIndex }) }),
+      apiFetch(`/admin/solutions/${b.id}`, { method: "PUT", body: JSON.stringify({ orderIndex: a.orderIndex }) }),
+    ]);
+    load();
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="text-white text-xl font-semibold">Soluções</h2>
+          <p className="text-gray-500 text-sm mt-1">Gerencie os cards de soluções e o conteúdo da página de cada uma.</p>
+        </div>
+        <Button onClick={openNew} className="bg-primary hover:bg-primary/90 shrink-0"><Plus className="w-4 h-4 mr-2" /> Nova Solução</Button>
+      </div>
+
+      {showForm && (
+        <div className="bg-white/5 border border-white/10 rounded-xl p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-white font-semibold">{editItem ? "Editar Solução" : "Nova Solução"}</h3>
+            <button onClick={() => setShowForm(false)} className="text-gray-500 hover:text-white p-1"><X className="w-4 h-4" /></button>
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-sm text-gray-400 font-medium">Título *</label>
+            <Input value={form.title} onChange={(e) => handleTitleChange(e.target.value)} placeholder="Ex: Seguro de Vida Individual" className="bg-white/5 border-white/10 text-white placeholder:text-gray-600" />
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-sm text-gray-400 font-medium">Endereço da página (slug) *</label>
+            <Input
+              value={form.slug}
+              onChange={(e) => { setSlugTouched(true); setForm((f) => ({ ...f, slug: slugify(e.target.value) })); }}
+              placeholder="seguro-de-vida-individual"
+              className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 font-mono text-sm"
+            />
+            <p className="text-xs text-gray-600">A página ficará em: /solucao/{form.slug || "..."}</p>
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-sm text-gray-400 font-medium">Ícone</label>
+            <div className="flex flex-wrap gap-2">
+              {solutionIconNames.map((name) => {
+                const IconComp = solutionIconMap[name]!;
+                const selected = form.icon === name;
+                return (
+                  <button
+                    key={name}
+                    type="button"
+                    onClick={() => setForm((f) => ({ ...f, icon: name }))}
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${selected ? "bg-primary border-primary text-white" : "bg-white/5 border-white/10 text-gray-400 hover:text-white hover:border-white/30"}`}
+                    title={name}
+                  >
+                    <IconComp className="w-5 h-5" />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-sm text-gray-400 font-medium">Descrição curta (aparece no card) *</label>
+            <Textarea value={form.desc} onChange={(e) => setForm((f) => ({ ...f, desc: e.target.value }))} placeholder="Frase curta que resume a solução" className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 resize-none" rows={2} />
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-sm text-gray-400 font-medium">Descrição completa (aparece na página da solução) *</label>
+            <Textarea value={form.fullDesc} onChange={(e) => setForm((f) => ({ ...f, fullDesc: e.target.value }))} placeholder="Explicação detalhada exibida na página individual" className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 resize-none" rows={4} />
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-sm text-gray-400 font-medium">Imagem de capa (página da solução) *</label>
+            <div className="flex items-center gap-3">
+              {form.image && <img src={form.image} alt="" className="w-16 h-16 rounded-lg object-cover border border-white/10" />}
+              <label className="cursor-pointer">
+                <span className="inline-flex items-center gap-2 text-sm bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 rounded-lg px-3 py-2 transition-colors">
+                  {uploading ? "Enviando..." : "Enviar imagem"}
+                </span>
+                <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
+              </label>
+            </div>
+            <Input value={form.image} onChange={(e) => setForm((f) => ({ ...f, image: e.target.value }))} placeholder="ou cole uma URL de imagem" className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 text-xs mt-2" />
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-sm text-gray-400 font-medium">O que está incluído (benefícios) *</label>
+            <div className="space-y-2">
+              {form.benefits.map((b, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <Input value={b} onChange={(e) => updateBenefit(i, e.target.value)} placeholder={`Benefício ${i + 1}`} className="bg-white/5 border-white/10 text-white placeholder:text-gray-600" />
+                  <button onClick={() => removeBenefit(i)} className="text-gray-500 hover:text-red-400 p-2 shrink-0"><X className="w-4 h-4" /></button>
+                </div>
+              ))}
+            </div>
+            <Button variant="ghost" size="sm" onClick={addBenefit} className="text-primary hover:text-primary/80 hover:bg-primary/10 gap-1.5 mt-1">
+              <Plus className="w-3.5 h-3.5" /> Adicionar benefício
+            </Button>
+          </div>
+
+          <div className="flex gap-3 pt-2 border-t border-white/5">
+            <Button onClick={handleSave} className="bg-primary hover:bg-primary/90">Salvar Solução</Button>
+            <Button variant="ghost" onClick={() => setShowForm(false)} className="text-gray-400 hover:text-white">Cancelar</Button>
+          </div>
+        </div>
+      )}
+
+      {loading ? (
+        <div className="space-y-3">{[1, 2, 3].map((i) => <div key={i} className="h-20 rounded-xl bg-white/5 animate-pulse" />)}</div>
+      ) : solutions.length === 0 ? (
+        <div className="text-center py-16 border border-dashed border-white/10 rounded-xl">
+          <Shield className="w-10 h-10 text-gray-600 mx-auto mb-3" />
+          <p className="text-gray-500">Nenhuma solução cadastrada ainda.</p>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {solutions.map((s, i) => {
+            const Icon = getSolutionIcon(s.icon);
+            return (
+              <div key={s.id} className={`flex items-center gap-4 bg-white/5 border rounded-xl p-4 transition-colors ${s.active ? "border-white/10 hover:bg-white/[0.07]" : "border-white/5 opacity-50"}`}>
+                <div className="flex flex-col shrink-0">
+                  <button onClick={() => move(i, -1)} disabled={i === 0} className="text-gray-500 hover:text-white disabled:opacity-20 disabled:cursor-not-allowed p-0.5"><ChevronUp className="w-3.5 h-3.5" /></button>
+                  <button onClick={() => move(i, 1)} disabled={i === solutions.length - 1} className="text-gray-500 hover:text-white disabled:opacity-20 disabled:cursor-not-allowed p-0.5"><ChevronDown className="w-3.5 h-3.5" /></button>
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+                  <Icon className="w-5 h-5" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <p className="text-white font-medium truncate">{s.title}</p>
+                    {!s.active && <span className="text-xs text-gray-500 bg-white/10 px-2 py-0.5 rounded-full shrink-0">Inativo</span>}
+                  </div>
+                  <p className="text-gray-500 text-sm truncate">{s.desc}</p>
+                  <p className="text-gray-600 text-xs font-mono mt-0.5">/solucao/{s.slug}</p>
+                </div>
+                <div className="flex gap-1 flex-shrink-0">
+                  <Button size="icon" variant="ghost" onClick={() => toggleActive(s)} className="h-8 w-8 text-gray-400 hover:text-white" title={s.active ? "Ocultar do site" : "Exibir no site"}>
+                    {s.active ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+                  </Button>
+                  <Button size="icon" variant="ghost" onClick={() => openEdit(s)} className="h-8 w-8 text-gray-400 hover:text-white"><Pencil className="w-3.5 h-3.5" /></Button>
+                  <Button size="icon" variant="ghost" onClick={() => deleteItem(s.id)} className="h-8 w-8 text-gray-400 hover:text-red-400"><Trash2 className="w-3.5 h-3.5" /></Button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── Testimonials Manager ─────────────────────────────────────────────────────
 
 function TestimonialsManager() {
@@ -625,6 +919,25 @@ function LeadsViewer() {
     URL.revokeObjectURL(url);
   }
 
+  function exportExcel() {
+    const data = leads.map(l => ({
+      Nome: l.name,
+      Email: l.email,
+      WhatsApp: l.whatsapp,
+      Data: new Date(l.createdAt).toLocaleString("pt-BR"),
+    }));
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    worksheet["!cols"] = [{ wch: 28 }, { wch: 30 }, { wch: 18 }, { wch: 20 }];
+    const range = XLSX.utils.decode_range(worksheet["!ref"]!);
+    for (let c = range.s.c; c <= range.e.c; c++) {
+      const cell = worksheet[XLSX.utils.encode_cell({ r: 0, c })];
+      if (cell) cell.s = { font: { bold: true }, fill: { fgColor: { rgb: "1E3A5F" } } };
+    }
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Leads");
+    XLSX.writeFile(workbook, "leads-bseguros.xlsx");
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-start justify-between gap-4">
@@ -633,9 +946,14 @@ function LeadsViewer() {
           <p className="text-gray-500 text-sm mt-1">{leads.length} lead{leads.length !== 1 ? "s" : ""} registrado{leads.length !== 1 ? "s" : ""}.</p>
         </div>
         {leads.length > 0 && (
-          <Button variant="outline" size="sm" onClick={exportCsv} className="border-white/20 text-gray-300 hover:text-white hover:bg-white/10 gap-1.5 shrink-0">
-            <Download className="w-3.5 h-3.5" /> Exportar CSV
-          </Button>
+          <div className="flex gap-2 shrink-0">
+            <Button variant="outline" size="sm" onClick={exportExcel} className="border-white/20 text-gray-300 hover:text-white hover:bg-white/10 gap-1.5">
+              <Download className="w-3.5 h-3.5" /> Exportar Excel
+            </Button>
+            <Button variant="outline" size="sm" onClick={exportCsv} className="border-white/20 text-gray-300 hover:text-white hover:bg-white/10 gap-1.5">
+              <Download className="w-3.5 h-3.5" /> Exportar CSV
+            </Button>
+          </div>
         )}
       </div>
       {loading ? (
@@ -688,6 +1006,26 @@ function ContactsViewer() {
     URL.revokeObjectURL(url);
   }
 
+  function exportExcel() {
+    const data = contacts.map(c => ({
+      Nome: c.name,
+      Telefone: c.phone,
+      Email: c.email,
+      Mensagem: c.message,
+      Data: new Date(c.createdAt).toLocaleString("pt-BR"),
+    }));
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    worksheet["!cols"] = [{ wch: 28 }, { wch: 18 }, { wch: 30 }, { wch: 50 }, { wch: 20 }];
+    const range = XLSX.utils.decode_range(worksheet["!ref"]!);
+    for (let c = range.s.c; c <= range.e.c; c++) {
+      const cell = worksheet[XLSX.utils.encode_cell({ r: 0, c })];
+      if (cell) cell.s = { font: { bold: true }, fill: { fgColor: { rgb: "1E3A5F" } } };
+    }
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Contatos");
+    XLSX.writeFile(workbook, "contatos-bseguros.xlsx");
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-start justify-between gap-4">
@@ -696,9 +1034,14 @@ function ContactsViewer() {
           <p className="text-gray-500 text-sm mt-1">{contacts.length} mensagen{contacts.length !== 1 ? "s" : ""} recebida{contacts.length !== 1 ? "s" : ""}.</p>
         </div>
         {contacts.length > 0 && (
-          <Button variant="outline" size="sm" onClick={exportCsv} className="border-white/20 text-gray-300 hover:text-white hover:bg-white/10 gap-1.5 shrink-0">
-            <Download className="w-3.5 h-3.5" /> Exportar CSV
-          </Button>
+          <div className="flex gap-2 shrink-0">
+            <Button variant="outline" size="sm" onClick={exportExcel} className="border-white/20 text-gray-300 hover:text-white hover:bg-white/10 gap-1.5">
+              <Download className="w-3.5 h-3.5" /> Exportar Excel
+            </Button>
+            <Button variant="outline" size="sm" onClick={exportCsv} className="border-white/20 text-gray-300 hover:text-white hover:bg-white/10 gap-1.5">
+              <Download className="w-3.5 h-3.5" /> Exportar CSV
+            </Button>
+          </div>
         )}
       </div>
       {loading ? (
@@ -734,9 +1077,10 @@ function ContactsViewer() {
 
 // ─── Dashboard ────────────────────────────────────────────────────────────────
 
-type Section = "albums" | "hero" | "testimonials" | "leads" | "contacts";
+type Section = "solutions" | "albums" | "hero" | "testimonials" | "leads" | "contacts";
 
 const navItems: { id: Section; label: string; icon: React.ReactNode; desc: string }[] = [
+  { id: "solutions", label: "Soluções", icon: <Shield className="w-4 h-4" />, desc: "Cards e páginas de cada solução" },
   { id: "albums", label: "Realizações", icon: <FolderOpen className="w-4 h-4" />, desc: "Álbuns e fotos" },
   { id: "hero", label: "Fotos da Hero", icon: <Image className="w-4 h-4" />, desc: "Imagens de fundo" },
   { id: "testimonials", label: "Depoimentos", icon: <Star className="w-4 h-4" />, desc: "Avaliações de clientes" },
@@ -745,7 +1089,7 @@ const navItems: { id: Section; label: string; icon: React.ReactNode; desc: strin
 ];
 
 function AdminDashboard({ onLogout }: { onLogout: () => void }) {
-  const [section, setSection] = useState<Section>("albums");
+  const [section, setSection] = useState<Section>("solutions");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { toast } = useToast();
 
@@ -811,6 +1155,7 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
           </div>
           <div className="p-4 sm:p-6 lg:p-8">
             <div className="max-w-5xl mx-auto">
+              {section === "solutions" && <SolutionsManager />}
               {section === "albums" && <AlbumsManager />}
               {section === "hero" && <HeroImagesManager />}
               {section === "testimonials" && <TestimonialsManager />}

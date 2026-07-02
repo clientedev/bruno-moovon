@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { db } from "@workspace/db";
-import { albumsTable, albumMediaTable, heroImagesTable, testimonialsTable, leadsTable, contactsTable } from "@workspace/db";
+import { albumsTable, albumMediaTable, heroImagesTable, testimonialsTable, leadsTable, contactsTable, solutionsTable } from "@workspace/db";
 import { eq, asc, desc } from "drizzle-orm";
 import { requireAdmin } from "../middleware/adminAuth";
 import { z } from "zod";
@@ -250,6 +250,75 @@ router.delete("/admin/testimonials/:id", requireAdmin, async (req, res) => {
     res.json({ ok: true });
   } catch (err) {
     req.log.error({ err }, "Failed to delete testimonial");
+    res.status(500).json({ error: "Erro interno" });
+  }
+});
+
+// ─── Solutions ────────────────────────────────────────────────────────────────
+
+const solutionSchema = z.object({
+  slug: z.string().min(1).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Slug deve conter apenas letras minúsculas, números e hífens"),
+  icon: z.string().min(1),
+  title: z.string().min(1),
+  desc: z.string().min(1),
+  fullDesc: z.string().min(1),
+  image: z.string().min(1),
+  benefits: z.array(z.string().min(1)).default([]),
+  active: z.boolean().optional(),
+  orderIndex: z.number().int().optional(),
+});
+
+router.get("/admin/solutions", requireAdmin, async (req, res) => {
+  try {
+    const rows = await db.select().from(solutionsTable).orderBy(asc(solutionsTable.orderIndex));
+    res.json(rows);
+  } catch (err) {
+    req.log.error({ err }, "Failed to fetch solutions");
+    res.status(500).json({ error: "Erro interno" });
+  }
+});
+
+router.post("/admin/solutions", requireAdmin, async (req, res) => {
+  const parsed = solutionSchema.safeParse(req.body);
+  if (!parsed.success) { res.status(400).json({ error: "Dados inválidos", details: parsed.error.flatten() }); return; }
+  try {
+    const existing = await db.select().from(solutionsTable).where(eq(solutionsTable.slug, parsed.data.slug));
+    if (existing.length > 0) { res.status(409).json({ error: "Já existe uma solução com este slug" }); return; }
+    const count = await db.select().from(solutionsTable);
+    const [row] = await db.insert(solutionsTable).values({ ...parsed.data, orderIndex: parsed.data.orderIndex ?? count.length }).returning();
+    res.status(201).json(row);
+  } catch (err) {
+    req.log.error({ err }, "Failed to create solution");
+    res.status(500).json({ error: "Erro interno" });
+  }
+});
+
+router.put("/admin/solutions/:id", requireAdmin, async (req, res) => {
+  const id = Number(req.params["id"]);
+  const parsed = solutionSchema.partial().safeParse(req.body);
+  if (!parsed.success || isNaN(id)) { res.status(400).json({ error: "Dados inválidos", details: parsed.success ? undefined : parsed.error.flatten() }); return; }
+  try {
+    if (parsed.data.slug) {
+      const existing = await db.select().from(solutionsTable).where(eq(solutionsTable.slug, parsed.data.slug));
+      if (existing.length > 0 && existing[0]?.id !== id) { res.status(409).json({ error: "Já existe uma solução com este slug" }); return; }
+    }
+    const [row] = await db.update(solutionsTable).set({ ...parsed.data, updatedAt: new Date() }).where(eq(solutionsTable.id, id)).returning();
+    if (!row) { res.status(404).json({ error: "Solução não encontrada" }); return; }
+    res.json(row);
+  } catch (err) {
+    req.log.error({ err }, "Failed to update solution");
+    res.status(500).json({ error: "Erro interno" });
+  }
+});
+
+router.delete("/admin/solutions/:id", requireAdmin, async (req, res) => {
+  const id = Number(req.params["id"]);
+  if (isNaN(id)) { res.status(400).json({ error: "ID inválido" }); return; }
+  try {
+    await db.delete(solutionsTable).where(eq(solutionsTable.id, id));
+    res.json({ ok: true });
+  } catch (err) {
+    req.log.error({ err }, "Failed to delete solution");
     res.status(500).json({ error: "Erro interno" });
   }
 });

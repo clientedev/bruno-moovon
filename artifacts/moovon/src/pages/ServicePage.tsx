@@ -1,14 +1,41 @@
+import { useEffect, useState } from "react";
 import { useParams, Link } from "wouter";
 import { motion } from "framer-motion";
 import { ChevronRight, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
-import { solutions } from "@/components/sections/Solutions";
+import { getSolutionIcon } from "@/lib/solutionIcons";
+import type { Solution } from "@/components/sections/Solutions";
 
 export function ServicePage() {
   const { slug } = useParams<{ slug: string }>();
-  const service = solutions.find((s) => s.slug === slug);
+  const [service, setService] = useState<Solution | null | undefined>(undefined);
+  const [otherServices, setOtherServices] = useState<Solution[]>([]);
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+  useEffect(() => {
+    setService(undefined);
+    fetch(`${base}/api/solutions/${slug}`)
+      .then(async (r) => (r.ok ? r.json() : null))
+      .then((data) => setService(data))
+      .catch(() => setService(null));
+
+    fetch(`${base}/api/solutions`)
+      .then((r) => r.json())
+      .then((data: Solution[]) => {
+        setOtherServices(Array.isArray(data) ? data.filter((s) => s.slug !== slug).slice(0, 3) : []);
+      })
+      .catch(() => setOtherServices([]));
+  }, [slug, base]);
+
+  if (service === undefined) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   if (!service) {
     return (
@@ -23,9 +50,7 @@ export function ServicePage() {
     );
   }
 
-  const Icon = service.icon;
-  const currentIndex = solutions.findIndex((s) => s.slug === slug);
-  const otherServices = solutions.filter((_, i) => i !== currentIndex).slice(0, 3);
+  const Icon = getSolutionIcon(service.icon);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -136,7 +161,7 @@ export function ServicePage() {
                   <h3 className="text-sm font-semibold tracking-widest uppercase text-muted-foreground mb-4">Outras Soluções</h3>
                   <div className="space-y-3">
                     {otherServices.map((s) => {
-                      const SIcon = s.icon;
+                      const SIcon = getSolutionIcon(s.icon);
                       return (
                         <Link key={s.slug} href={`/solucao/${s.slug}`}>
                           <div className="group flex items-center gap-3 p-4 rounded-2xl border border-border/50 bg-card hover:border-primary/30 hover:shadow-md transition-all cursor-pointer">

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { db } from "@workspace/db";
-import { albumsTable, albumMediaTable, heroImagesTable, testimonialsTable } from "@workspace/db";
+import { albumsTable, albumMediaTable, heroImagesTable, testimonialsTable, solutionsTable } from "@workspace/db";
 import { eq, asc } from "drizzle-orm";
 
 const router = Router();
@@ -82,6 +82,41 @@ router.get("/testimonials", async (req, res) => {
     res.json(rows);
   } catch (err) {
     req.log.error({ err }, "Failed to fetch testimonials");
+    res.status(500).json({ error: "Erro interno" });
+  }
+});
+
+// Public: active solutions
+router.get("/solutions", async (req, res) => {
+  try {
+    const rows = await db
+      .select()
+      .from(solutionsTable)
+      .where(eq(solutionsTable.active, true))
+      .orderBy(asc(solutionsTable.orderIndex));
+    res.json(rows);
+  } catch (err) {
+    req.log.error({ err }, "Failed to fetch solutions");
+    res.status(500).json({ error: "Erro interno" });
+  }
+});
+
+// Public: single solution by slug
+router.get("/solutions/:slug", async (req, res) => {
+  const slug = req.params["slug"];
+  try {
+    const [row] = await db
+      .select()
+      .from(solutionsTable)
+      .where(eq(solutionsTable.slug, slug))
+      .limit(1);
+    if (!row || !row.active) {
+      res.status(404).json({ error: "Solução não encontrada" });
+      return;
+    }
+    res.json(row);
+  } catch (err) {
+    req.log.error({ err }, "Failed to fetch solution");
     res.status(500).json({ error: "Erro interno" });
   }
 });

@@ -38,6 +38,24 @@ export const heroImagesTable = pgTable("hero_images", {
 export type HeroImage = typeof heroImagesTable.$inferSelect;
 export type InsertHeroImage = typeof heroImagesTable.$inferInsert;
 
+export const solutionsTable = pgTable("solutions", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  icon: text("icon").default("Shield").notNull(),
+  title: text("title").notNull(),
+  desc: text("desc").notNull(),
+  fullDesc: text("full_desc").notNull(),
+  image: text("image").notNull(),
+  benefits: text("benefits").array().default([]).notNull(),
+  active: boolean("active").default(true).notNull(),
+  orderIndex: integer("order_index").default(0).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type SolutionRow = typeof solutionsTable.$inferSelect;
+export type InsertSolution = typeof solutionsTable.$inferInsert;
+
 export const testimonialsTable = pgTable("testimonials", {
   id: serial("id").primaryKey(),
   text: text("text").notNull(),
