@@ -76,8 +76,16 @@ export function Hero() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white mb-5"
           >
-            Proteja quem você ama. <br />
-            <span className="text-primary-foreground/90 font-light italic">Planeje o futuro</span> com segurança.
+            {/* Desktop */}
+            <span className="hidden md:block">
+              Proteja quem você ama. <br />
+              <span className="text-primary-foreground/90 font-light italic">Planeje o futuro</span> com segurança.
+            </span>
+            {/* Mobile */}
+            <span className="block md:hidden">
+              Proteja sua família.<br />
+              <span className="text-primary-foreground/90 font-light italic">Planeje</span> com segurança.
+            </span>
           </motion.h1>
 
           <motion.p
@@ -86,7 +94,14 @@ export function Hero() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl font-light leading-relaxed"
           >
-            Há mais de 10 anos ajudando famílias, empresários e profissionais a proteger seu patrimônio e construir um futuro financeiro seguro.
+            {/* Desktop */}
+            <span className="hidden md:block">
+              Há mais de 10 anos ajudando famílias, empresários e profissionais a proteger seu patrimônio e construir um futuro financeiro seguro.
+            </span>
+            {/* Mobile */}
+            <span className="block md:hidden">
+              Especialista em seguros de vida e planejamento patrimonial.
+            </span>
           </motion.p>
 
           <motion.div
