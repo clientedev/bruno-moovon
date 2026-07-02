@@ -109,7 +109,7 @@ function AdminLogin({ onSuccess }: { onSuccess: () => void }) {
     <div className="min-h-screen bg-[#0d0f14] flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-10">
-          <img src="/logo-bruno-saraiva.png" alt="Bruno Saraiva" className="h-14 w-auto mx-auto mb-6" />
+          <img src="/logo-bseguros.png" alt="BSeguros" className="h-14 w-auto mx-auto mb-6 brightness-0 invert" />
           <p className="text-xs text-gray-500 tracking-widest uppercase">Área Administrativa</p>
         </div>
         <form onSubmit={handleSubmit} className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4 shadow-2xl">
@@ -760,7 +760,7 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
   return (
     <div className="min-h-screen bg-[#0d0f14] flex flex-col">
       <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#1a1d24] border-b border-white/10">
-        <img src="/logo-bruno-saraiva.png" alt="Bruno Saraiva" className="h-8 w-auto" />
+        <img src="/logo-bseguros.png" alt="BSeguros" className="h-8 w-auto brightness-0 invert" />
         <button onClick={() => setSidebarOpen(!sidebarOpen)} className="text-gray-400 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors">
           <Menu className="w-5 h-5" />
         </button>
@@ -769,7 +769,7 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
       <div className="flex flex-1 overflow-hidden">
         <aside className={`fixed lg:relative inset-y-0 left-0 z-50 lg:z-auto w-64 bg-[#1a1d24] border-r border-white/10 flex flex-col transform transition-transform duration-200 ease-in-out ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}>
           <div className="p-5 border-b border-white/10">
-            <img src="/logo-bruno-saraiva.png" alt="Bruno Saraiva" className="h-10 w-auto mb-3 hidden lg:block" />
+            <img src="/logo-bseguros.png" alt="BSeguros" className="h-10 w-auto mb-3 hidden lg:block brightness-0 invert" />
             <div className="flex items-center justify-between lg:justify-start">
               <p className="text-xs text-gray-500 uppercase tracking-widest font-medium">Painel Administrativo</p>
               <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-gray-500 hover:text-white p-1"><X className="w-4 h-4" /></button>
@@ -839,7 +839,7 @@ export function Admin() {
     return (
       <div className="min-h-screen bg-[#0d0f14] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <img src="/logo-bruno-saraiva.png" alt="Bruno Saraiva" className="h-12 w-auto opacity-50" />
+          <img src="/logo-bseguros.png" alt="BSeguros" className="h-12 w-auto opacity-50 brightness-0 invert" />
           <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
         </div>
       </div>
