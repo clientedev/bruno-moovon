@@ -272,6 +272,24 @@ export async function ensureTables(): Promise<void> {
       }
     }
 
+    // Seed albums (Realizações) — insert by name if not already present
+    const ALBUMS_SEED = [
+      { name: "MDRT Miami 2025",                           description: "Million Dollar Round Table Annual Meeting em Miami, EUA.",           order_index: 0 },
+      { name: "MAG Seguros Curaçao 2025",                  description: "Reconhecimento MAG Seguros em Curaçao.",                            order_index: 1 },
+      { name: "Insurance Experience África do Sul 2024",   description: "Experiência internacional de seguros na África do Sul.",             order_index: 2 },
+      { name: "Omint Awards Olimpíadas de Paris 2024",     description: "Premiação Omint durante as Olimpíadas de Paris.",                   order_index: 3 },
+      { name: "Troféus",                                   description: "Coleção de troféus e reconhecimentos conquistados ao longo da carreira.", order_index: 4 },
+    ];
+    logger.info("Seeding albums (Realizações)...");
+    for (const album of ALBUMS_SEED) {
+      await pool.query(
+        `INSERT INTO albums (name, description, order_index)
+         SELECT $1, $2, $3
+         WHERE NOT EXISTS (SELECT 1 FROM albums WHERE name = $1)`,
+        [album.name, album.description, album.order_index]
+      );
+    }
+
     logger.info("Database tables ready.");
   } catch (err) {
     logger.error({ err }, "Failed to ensure database tables");

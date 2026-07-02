@@ -7,9 +7,7 @@ cmds = ["pnpm install --no-frozen-lockfile"]
 [phases.build]
 cmds = [
   "BASE_PATH=/ PORT=3000 pnpm --filter @workspace/moovon build",
-  "pnpm --filter @workspace/api-server build",
-  "pnpm --filter db push",
-  "pnpm --filter db seed"
+  "pnpm --filter @workspace/api-server build"
 ]
 
 [start]
