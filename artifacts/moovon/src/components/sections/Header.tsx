@@ -38,7 +38,7 @@ export function Header() {
           <img
             src="/logo-bseguros.png"
             alt="BSeguros"
-            className={`h-14 w-auto transition-all duration-300 ${
+            className={`h-9 w-auto transition-all duration-300 ${
               isScrolled
                 ? "brightness-0 dark:brightness-0 dark:invert"
                 : "brightness-0 invert"

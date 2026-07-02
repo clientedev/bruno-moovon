@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, TrendingUp, Target, Lightbulb } from "lucide-react";
+import { ArrowRight, Brain, Target, Briefcase, MessageCircle } from "lucide-react";
 
 export function Mentoria() {
   return (
@@ -19,7 +19,7 @@ export function Mentoria() {
               Mentoria exclusiva para corretores de seguros de vida.
             </h2>
             <p className="text-lg text-gray-300 font-light mb-8 leading-relaxed max-w-xl">
-              Uma mentoria desenvolvida especialmente para corretores de seguros de vida que desejam elevar seus resultados, dominar o planejamento sucessório e construir uma carteira de clientes de alto padrão.
+              Transforme sua carreira de corretor e construa uma renda recorrente e vitalícia escalável, mesmo que esteja começando do zero.
             </p>
             
             <Button size="lg" className="rounded-full px-8 text-base bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
@@ -37,28 +37,33 @@ export function Mentoria() {
           >
             {[
               {
+                icon: Brain,
+                title: "1. Domínio Técnico",
+                desc: "Aprenda a dominar coberturas, cláusulas, simulações e fazer comparativos entre seguradoras, garantindo autoridade e segurança em cada venda."
+              },
+              {
                 icon: Target,
-                title: "Objetivos Claros",
-                desc: "Alinhamento das suas finanças com seus objetivos de vida e família."
+                title: "2. Captação Estratégica",
+                desc: "Atração de Clientes Qualificados: Defina seu nicho, aprenda a captar clientes por indicações, redes sociais e parcerias."
               },
               {
-                icon: TrendingUp,
-                title: "Estratégia Sólida",
-                desc: "Criação de um portfólio de proteção que evolui com seu patrimônio."
+                icon: Briefcase,
+                title: "3. Roteiro de Vendas",
+                desc: "Aprenda um roteiro completo para agendar, abordar e fechar com técnica. Aprenda a contornar objeções e gerar recomendações com naturalidade."
               },
               {
-                icon: Lightbulb,
-                title: "Decisões Inteligentes",
-                desc: "Educação financeira para evitar armadilhas comuns do mercado."
+                icon: MessageCircle,
+                title: "4. Performance e Comunicação",
+                desc: "Dicas de Ouro: Desenvolva sua comunicação emocional e storytelling para conectar e vender. Use PNL e arquétipos de clientes para entender perfis e ajustar sua abordagem."
               }
             ].map((item, i) => (
-              <div 
-                key={i} 
-                className={`p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm ${i === 2 ? 'sm:col-span-2' : ''}`}
+              <div
+                key={i}
+                className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm"
               >
                 <item.icon className="w-8 h-8 text-primary mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-gray-400 font-light text-sm">{item.desc}</p>
+                <p className="text-gray-400 font-light text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </motion.div>

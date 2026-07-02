@@ -11,7 +11,7 @@ export function Footer() {
               <img
                 src="/logo-bseguros.png"
                 alt="BSeguros"
-                className="h-12 w-auto"
+                className="h-9 w-auto brightness-0 invert"
               />
             </div>
             <p className="text-gray-400 font-light leading-relaxed mb-6 text-sm">
