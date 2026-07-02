@@ -103,23 +103,6 @@ export function Hero() {
             </Button>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-white/10 pt-8"
-          >
-            {[
-              "+10 anos de experiência",
-              "+1.000 clientes ativos",
-              "+R$ 1 bilhão em capital segurado"
-            ].map((stat, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                <span className="text-sm text-gray-300 font-medium tracking-wide uppercase">{stat}</span>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </div>
 
