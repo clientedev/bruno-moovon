@@ -40,10 +40,10 @@ export function Solutions() {
           >
             <h2 className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">Nossas Soluções</h2>
             <h3 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Proteção sob medida para o seu momento de vida
+              Protegemos patrimônios. Planejamos legados.
             </h3>
             <p className="text-lg text-muted-foreground font-light">
-              Oferecemos um portfólio completo de soluções em wealth management e seguros, desenhadas especificamente para profissionais exigentes.
+              Soluções estratégicas em seguros, planejamento patrimonial e sucessório para empresários, executivos e famílias.
             </p>
           </motion.div>
         </div>
