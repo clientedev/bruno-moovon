@@ -47,7 +47,8 @@ export function Footer() {
               <li><a href="#solucoes" className="text-gray-400 hover:text-white transition-colors text-sm">Proteção para Empresários</a></li>
               <li><a href="#solucoes" className="text-gray-400 hover:text-white transition-colors text-sm">Planejamento Sucessório</a></li>
               <li><a href="#solucoes" className="text-gray-400 hover:text-white transition-colors text-sm">Blindagem Financeira</a></li>
-              <li><a href="#ebook" className="text-gray-400 hover:text-white transition-colors text-sm">E-book Gratuito</a></li>
+              <li><a href="#ebook" className="text-gray-400 hover:text-white transition-colors text-sm">Ebook para Clientes e/ou Corretores</a></li>
+              <li><a href="#mentoria" className="text-gray-400 hover:text-white transition-colors text-sm">Mentoria para Corretores</a></li>
             </ul>
           </div>
 
@@ -60,7 +61,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0" />
-                <span className="text-gray-400 text-sm">Atendimento em todo o Brasil (Online e Presencial)</span>
+                <span className="text-gray-400 text-sm">Av. Antártica, 675 – Perdizes<br />São Paulo, SP<br />Atendimento em todo o Brasil</span>
               </li>
             </ul>
           </div>

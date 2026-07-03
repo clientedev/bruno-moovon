@@ -13,11 +13,7 @@ const faqs = [
   },
   {
     q: "Seguro de vida serve apenas para quem tem filhos?",
-    a: "Não. O seguro de vida é recomendado para qualquer pessoa que possui dependentes financeiros, dívidas ou patrimônio a proteger, servindo também como proteção em casos de invalidez ou doenças graves."
-  },
-  {
-    q: "Como funciona o pagamento?",
-    a: "O pagamento é feito através de boleto bancário ou débito em conta, com mensalidades que se encaixam perfeitamente no seu orçamento financeiro, desenhadas no momento do planejamento."
+    a: "Não. O seguro de vida é, na verdade, um seguro financeiro. Ele funciona para qualquer pessoa que deseja proteger o padrão de vida, patrimônio, objetivos e sonhos de vida. Para quem tem filhos também é importante para proteger a manutenção do padrão de vida e formação de dependentes, além de solucionar custos de inventário com uma alta redução tributária."
   },
   {
     q: "Posso contratar online?",
@@ -25,7 +21,7 @@ const faqs = [
   },
   {
     q: "Quais seguradoras vocês trabalham?",
-    a: "Trabalhamos com as principais seguradoras do mercado nacional e internacional, sempre buscando a melhor cobertura com o melhor custo-benefício para o seu perfil específico."
+    a: "Trabalhamos com as principais seguradoras do mercado nacional e internacional, sempre buscando a melhor cobertura com o melhor custo-benefício para o seu perfil específico. Entre elas: MAG Seguros, Prudential, MetLife, Omint, Icatu, Azos e Allianz."
   },
   {
     q: "Como funciona a consultoria?",

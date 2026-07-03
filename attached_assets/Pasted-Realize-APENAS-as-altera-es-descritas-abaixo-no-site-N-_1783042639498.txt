@@ -1,0 +1,106 @@
+Realize APENAS as alterações descritas abaixo no site. Não altere absolutamente mais nada. Preserve integralmente o layout, identidade visual, animações, responsividade, SEO, performance, estrutura do código e todas as funcionalidades existentes. Não crie novas seções, não reorganize elementos, não faça melhorias não solicitadas e não substitua textos além dos especificados.
+
+1. Seção "Por que escolher a B Seguros?" (Lista de diferenciais)
+
+Remova apenas os seguintes itens da lista:
+
+Atendimento humanizado
+Especialização em Seguro de Vida
+
+Todos os demais diferenciais devem permanecer exatamente como estão.
+
+2. Seção "Soluções"
+
+Substitua o item:
+
+E-book Gratuito
+
+pelos dois itens abaixo:
+
+Ebook para Clientes e/ou Corretores
+Mentoria para Corretores
+
+Mantenha todos os demais itens exatamente iguais.
+
+A lista deverá ficar assim:
+
+Seguro de Vida Individual
+Proteção para Empresários
+Planejamento Sucessório
+Blindagem Financeira
+Ebook para Clientes e/ou Corretores
+Mentoria para Corretores
+3. Seção "Localização"
+
+Adicione o endereço:
+
+Av. Antártica, 675 – Perdizes
+
+Mantendo também:
+
+São Paulo, SP
+Atendimento em todo o Brasil
+
+Não remova as informações existentes, apenas acrescente o endereço.
+
+4. Seção "Contato"
+
+Caso exista o endereço nesta seção, atualize-o para:
+
+Av. Antártica, 675 – Perdizes
+
+Não altere e-mail, telefone ou qualquer outro dado de contato.
+
+5. Seção "Com quais seguradoras vocês trabalham?"
+
+Ao final do texto, acrescente as seguintes seguradoras:
+
+MAG Seguros
+Prudential
+MetLife
+Omint
+Icatu
+Azos
+Allianz
+
+Importante:
+
+Não inserir logotipos das seguradoras.
+Apenas mencionar os nomes em texto.
+Não criar uma nova seção para isso.
+Apenas complementar o conteúdo existente.
+6. FAQ - Forma de pagamento
+
+Remova temporariamente toda a pergunta e resposta relacionadas à forma de pagamento.
+
+Não substitua por outro conteúdo.
+
+7. FAQ - Seguro de Vida
+
+Na pergunta:
+
+"Serve apenas para quem tem filhos?"
+
+Substitua somente a resposta pelo texto abaixo:
+
+Não. O seguro de vida é, na verdade, um seguro financeiro. Ele funciona para qualquer pessoa que deseja proteger o padrão de vida, patrimônio, objetivos e sonhos de vida. Para quem tem filhos também é importante para proteger a manutenção do padrão de vida e formação de dependentes, além de solucionar custos de inventário com uma alta redução tributária.
+
+Não altere o título da pergunta.
+
+Restrições importantes
+Não alterar o layout.
+Não alterar cores.
+Não alterar tipografia.
+Não alterar espaçamentos.
+Não alterar animações.
+Não alterar responsividade.
+Não alterar componentes que já funcionam.
+Não modificar qualquer outro texto além dos especificados.
+Não adicionar novas funcionalidades.
+Não remover nenhuma funcionalidade existente.
+Não reorganizar seções.
+Não realizar melhorias visuais não solicitadas.
+Não alterar SEO, links, formulários ou integrações.
+Preserve todo o restante do site exatamente como está.
+
+Objetivo: executar somente as alterações solicitadas pelo cliente, mantendo todo o restante do projeto completamente inalterado.

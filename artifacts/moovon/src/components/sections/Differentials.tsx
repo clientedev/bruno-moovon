@@ -8,9 +8,7 @@ export function Differentials() {
     "Atendimento em todo Brasil",
     "Planejamento de longo prazo",
     "Proteção patrimonial",
-    "Especialização em seguros de vida",
     "Suporte contínuo",
-    "Atendimento humanizado"
   ];
 
   return (

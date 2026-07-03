@@ -113,7 +113,7 @@ export function Contact() {
                 <div>
                   <h4 className="font-bold text-foreground mb-1">Localização</h4>
                   <p className="text-muted-foreground">
-                    São Paulo, SP<br />Atendimento em todo o Brasil
+                    Av. Antártica, 675 – Perdizes<br />São Paulo, SP<br />Atendimento em todo o Brasil
                   </p>
                 </div>
               </div>
