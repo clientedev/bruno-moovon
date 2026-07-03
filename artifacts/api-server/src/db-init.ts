@@ -31,8 +31,8 @@ const SOLUTIONS_SEED = [
   {
     slug: "seguro-de-vida-individual",
     icon: "Shield",
-    title: "Seguro de Vida Individual",
-    desc: "Proteção financeira para quem construiu um patrimônio e quer preservar seu legado.",
+    title: "Proteção Financeira Pessoal",
+    desc: "Planejamento personalizado para preservar sua renda, proteger seu patrimônio e objetivos de vida.",
     full_desc: "Um seguro de vida moderno vai muito além da indenização em caso de falecimento. Ele é uma ferramenta estratégica de proteção patrimonial, planejamento financeiro e tranquilidade para você e sua família.\n\nNa BSEGUROS desenvolvemos projetos personalizados, considerando seu patrimônio, renda, objetivos e momento de vida, para garantir que qualquer imprevisto não comprometa tudo aquilo que você levou anos para construir.\n\nNosso processo: Diagnóstico financeiro · Levantamento de necessidades · Comparação entre as principais seguradoras · Estruturação personalizada · Acompanhamento permanente da apólice.\n\nPara quem é: Empresários · Executivos · Profissionais liberais · Médicos · Advogados · Investidores · Famílias que desejam segurança financeira.\n\nProteja quem depende de você e preserve seu patrimônio.",
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600&q=80",
     benefits: [
@@ -48,8 +48,8 @@ const SOLUTIONS_SEED = [
   {
     slug: "seguro-para-familias",
     icon: "Users",
-    title: "Seguro para Famílias",
-    desc: "Quem ama protege.",
+    title: "Proteção Financeira Familiar",
+    desc: "Garantimos a continuidade financeira da sua família.",
     full_desc: "A maior preocupação de uma família não é apenas perder alguém, mas perder a estabilidade financeira em um momento extremamente delicado.\n\nNossa missão é garantir que o padrão de vida da família seja preservado mesmo diante de acontecimentos inesperados.\n\nCada planejamento é construído considerando: despesas mensais; educação dos filhos; financiamento imobiliário; sucessão patrimonial; reserva financeira; objetivos futuros.\n\nMais do que contratar um seguro, você cria um plano de continuidade para quem mais importa.",
     image: "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1600&q=80",
     benefits: [
@@ -65,8 +65,8 @@ const SOLUTIONS_SEED = [
   {
     slug: "seguro-para-empresarios",
     icon: "Briefcase",
-    title: "Seguro para Empresários",
-    desc: "Proteção estratégica para empresas e sócios.",
+    title: "Continuidade Empresarial",
+    desc: "Protegemos empresas e sócios contra eventos inesperados.",
     full_desc: "Empresas também enfrentam riscos que podem comprometer sua continuidade.\n\nUma doença grave, invalidez ou falecimento de um sócio pode gerar enormes impactos financeiros e operacionais.\n\nA BSEGUROS estrutura soluções específicas para empresas: Seguro de Vida Empresarial · Seguro Pessoa-Chave · Buy and Sell Agreement · Planejamento sucessório empresarial · Proteção para executivos · Benefícios corporativos.\n\nNosso objetivo é garantir que a empresa continue crescendo independentemente dos imprevistos.",
     image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80",
     benefits: [
@@ -83,7 +83,7 @@ const SOLUTIONS_SEED = [
     slug: "planejamento-sucessorio",
     icon: "FileText",
     title: "Planejamento Sucessório",
-    desc: "Transmita seu patrimônio com inteligência.",
+    desc: "Organizamos a transmissão de patrimônio, reduzindo custos tributários de forma eficiente.",
     full_desc: "Construir patrimônio exige anos.\n\nPerdê-lo em custos, conflitos familiares e demora judicial pode acontecer em poucos meses.\n\nNa BSEGUROS desenvolvemos estratégias para organizar a sucessão patrimonial de forma eficiente, reduzindo burocracia e proporcionando liquidez imediata para a família.\n\nAnalisamos ferramentas como: Seguro de Vida · Previdência Privada · Testamento · Holdings · Planejamento tributário · Organização patrimonial.\n\nCada família possui uma realidade diferente. Por isso cada projeto é totalmente personalizado.\n\nNosso objetivo é preservar patrimônio, reduzir conflitos e garantir que seu legado seja respeitado.",
     image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80",
     benefits: [
@@ -132,8 +132,8 @@ const SOLUTIONS_SEED = [
   {
     slug: "consultoria-financeira",
     icon: "LineChart",
-    title: "Consultoria Financeira",
-    desc: "Decisões melhores começam com um bom planejamento.",
+    title: "Planejamento Financeiro",
+    desc: "Estratégias sob medida para organização financeira, mitigar riscos e alcançar objetivos.",
     full_desc: "Antes de contratar qualquer produto, entendemos seus objetivos.\n\nAcreditamos que seguros fazem parte de um planejamento financeiro completo.\n\nPor isso realizamos uma consultoria personalizada para analisar: patrimônio; renda; despesas; investimentos; riscos; planejamento sucessório; necessidades de proteção.\n\nAo final, você recebe recomendações totalmente alinhadas ao seu momento de vida.\n\nSem soluções padronizadas. Sem conflitos de interesse. Apenas estratégias personalizadas.",
     image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1600&q=80",
     benefits: [
@@ -150,8 +150,8 @@ const SOLUTIONS_SEED = [
   {
     slug: "mentoria-personalizada",
     icon: "GraduationCap",
-    title: "Mentoria Personalizada",
-    desc: "Desenvolvendo profissionais que desejam construir uma carreira sólida no mercado de seguros.",
+    title: "Desenvolvimento Profissional",
+    desc: "Mentoria para corretores.",
     full_desc: "Além da consultoria para clientes finais, a BSEGUROS também compartilha conhecimento com profissionais do mercado segurador.\n\nNossa mentoria foi criada para corretores que desejam: vender mais; aumentar sua renda recorrente; atuar com seguros de vida consultivos; aprender planejamento sucessório; estruturar processos comerciais; construir autoridade no mercado.\n\nVocê aprende diretamente com quem possui experiência prática, reconhecimento nacional e atuação em planejamento patrimonial de clientes de alta renda.\n\nA mentoria combina estratégia comercial, conhecimento técnico e acompanhamento próximo para acelerar seus resultados.",
     image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1600&q=80",
     benefits: [
