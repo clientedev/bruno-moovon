@@ -1084,7 +1084,6 @@ const navItems: { id: Section; label: string; icon: React.ReactNode; desc: strin
   { id: "albums", label: "Realizações", icon: <FolderOpen className="w-4 h-4" />, desc: "Álbuns e fotos" },
   { id: "hero", label: "Fotos da Hero", icon: <Image className="w-4 h-4" />, desc: "Imagens de fundo" },
   { id: "testimonials", label: "Depoimentos", icon: <Star className="w-4 h-4" />, desc: "Avaliações de clientes" },
-  { id: "leads", label: "Leads", icon: <Users className="w-4 h-4" />, desc: "Contatos captados" },
   { id: "contacts", label: "Contatos", icon: <Mail className="w-4 h-4" />, desc: "Mensagens recebidas" },
 ];
 
@@ -1159,7 +1158,6 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
               {section === "albums" && <AlbumsManager />}
               {section === "hero" && <HeroImagesManager />}
               {section === "testimonials" && <TestimonialsManager />}
-              {section === "leads" && <LeadsViewer />}
               {section === "contacts" && <ContactsViewer />}
             </div>
           </div>
