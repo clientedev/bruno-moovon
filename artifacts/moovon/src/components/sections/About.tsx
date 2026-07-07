@@ -14,7 +14,7 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative"
+            className="relative overflow-hidden lg:overflow-visible"
           >
             <div className="aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl relative z-10">
               <img
@@ -23,7 +23,7 @@ export function About() {
                 className="w-full h-full object-cover object-top"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-primary rounded-3xl z-0" />
+            <div className="hidden lg:block absolute -bottom-6 -right-6 w-full h-full border-2 border-primary rounded-3xl z-0" />
           </motion.div>
 
           <motion.div
@@ -88,7 +88,7 @@ export function About() {
             <img
               src="/mdrt-logo.png"
               alt="MDRT"
-              className="w-24 h-24 object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+              className="w-32 h-32 object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
             />
             <div>
               <p className="font-serif font-bold text-lg text-foreground">MDRT</p>
@@ -104,7 +104,7 @@ export function About() {
             <img
               src="/atcb-selo.png"
               alt="ATCB"
-              className="w-24 h-24 object-contain drop-shadow-md"
+              className="w-32 h-32 object-contain drop-shadow-md"
             />
             <div>
               <p className="font-serif font-bold text-lg text-foreground">ATCB</p>
